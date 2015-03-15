@@ -9,7 +9,7 @@ class Manage_users_model extends CI_Model {
 		date_default_timezone_set('Asia/Manila');
 		
 		$username 						= $this->input->post("username");
-		$password						= md5('12345');
+		$password						= md5('123456');
 		$type							= 'users';
 		$lastname 						= $this->input->post("lastname");
 		$firstname 						= $this->input->post("firstname");
@@ -107,11 +107,8 @@ class Manage_users_model extends CI_Model {
 		$users				= $this->db->select("id, username, date")->from("users")->get();
 		$merged_data = array();
 		if($user_info->num_rows() > 0):
-			$counter = 0;
 			foreach($user_info->result() as $row):		
-				if ($counter==1):
 					$query = $this->db->select("username")->where("id", $row->user_id)->get("users");
-
 					$merged_data[$row->user_id]["user_id"] = $row->user_id;
 					$merged_data[$row->user_id]["last_name"] = $row->last_name;
 					$merged_data[$row->user_id]["first_name"] = $row->first_name;
@@ -119,16 +116,13 @@ class Manage_users_model extends CI_Model {
 					$merged_data[$row->user_id]["update_id"] = "updateinfo_".$row->user_id;
 					$merged_data[$row->user_id]["update_link"] = "<a href='#' onClick='show_modal(\"update\", \"".$row->user_id."\", ".$row->user_id.")'>Update</a>";
 					$merged_data[$row->user_id]["delete_link"] = "<a href='#' onClick='show_modal(\"delete\", \"".$query->first_row()->username."\", ".$row->user_id.")'>Delete</a>";
-				endif;
-				$counter=1;
 			endforeach;
 			foreach($users->result() as $row):
-				if ($counter==2):
 					$merged_data[$row->id]["username"] = $row->username;
 					$merged_data[$row->id]["date"] = $row->date;
-				endif;
-				$counter=2;
 			endforeach;
+		else:
+			$merged_data = array();
 		endif;
 
 		$user_info->free_result();
