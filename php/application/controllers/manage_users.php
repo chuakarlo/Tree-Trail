@@ -47,7 +47,7 @@ class Manage_users extends CI_Controller {
 
 		if(!$this->form_validation->run()):
 			$data["user_data"] = $this->users->get($id);
-			echo $this->load->view("manage_users_modal", $data);
+			$this->load->view("manage_users_modal", $data);
 		else:
 			$this->submit();
 		endif;
@@ -84,9 +84,15 @@ class Manage_users extends CI_Controller {
 	public function delete_user() {
 		$id = $this->uri->segment(3);		
 		if($this->users->delete($id)):
-			echo "{\"title\": \"Delete Successful\", \"body\": \"The user has been successfully deleted!\"}";
+			$this->output->set_output(json_encode([
+				'title' => 'Delete Successful',
+				'body' => 'The user has been successfully deleted!'
+			]));
 		else:
-			echo "{\"title\": \"Delete Failed\", \"body\": \"The user has not been deleted!\"}";
+			$this->output->set_output(json_encode([
+				'title' => 'Delete Failed',
+				'body' => 'The user has not been deleted!'
+			]));
 		endif;
 	}
 	
@@ -95,17 +101,31 @@ class Manage_users extends CI_Controller {
 
 		if($submit == "add"):
 			if($this->users->add()):
-				echo "{\"response\": \"Success!\", \"title\": \"Add Successful\", \"body\": \"The user has been successfully added!\"}";
+				$this->output->set_output(json_encode([
+					'response' => 'Success!',
+					'title' => 'Add Successful',
+					'body' => 'The user has been successfully added!'
+				]));
 			else:
-				echo "{\"response\": \"Failure!\", \"title\": \"Add Failed\", \"body\": \"The user has not been added!\"}";
+				$this->output->set_output(json_encode([
+					'response' => 'Failure!',
+					'title' => 'Add Failed',
+					'body' => 'The user has not been added!'
+				]));
 			endif;
-		elseif($submit == "login"):
-			echo "Success!";
 		else:
 			if($this->users->update()):
-				echo "{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"The user has been successfully updated!\"}";
+				$this->output->set_output(json_encode([
+					'response' => 'Success!',
+					'title' => 'Update Successful',
+					'body' => 'The user has been successfully updated!'
+				]));
 			else:
-				echo "{\"response\": \"Failure!\", \"title\": \"Update Failed\", \"body\": \"The user has not been updated!\"}";
+				$this->output->set_output(json_encode([
+					'response' => 'Failure!',
+					'title' => 'Update Failed',
+					'body' => 'The user has not been updated!'
+				]));
 			endif;
 		endif;
 		
