@@ -25,15 +25,19 @@ class Settings extends TreeTrailController {
 	  ];
 	endif;
   
-    $this->render('settings/settings_view', $user, [
-      'layout' => 'layout'
-    ]);
+    if($this->isLoggedIn):
+      $this->render('settings/settings_view', $user, [
+        'layout' => 'layout'
+      ]);
+	else:
+	  redirect('/');
+	endif;
   }
   
   public function index_post() {
 	$this->load->model("settings_model", "settings");
 	if($this->post('target') == 'name'):
-	  if(!$this->post('first-attempt')):
+	  if($this->post('first-attempt') === 'false'):
 		$this->form_validation->set_error_delimiters("", "");
 		$this->form_validation->set_rules("first-name", "First Name", "required");
 		$this->form_validation->set_rules("middle-name", "Middle Name", "required");
@@ -51,7 +55,7 @@ class Settings extends TreeTrailController {
 		endif;
 	  endif;
 	elseif($this->post('target') == 'username'):
-	  if(!$this->post('first-attempt')):
+	  if($this->post('first-attempt') === 'false'):
 		$this->form_validation->set_error_delimiters("", "");
 		$this->form_validation->set_rules("username", "Username", "required|callback_check_if_username_exists|alpha_numeric");
 	  endif;
@@ -65,7 +69,7 @@ class Settings extends TreeTrailController {
 		endif;
 	  endif;
 	elseif($this->post('target') == 'password'):
-	  if(!$this->post('first-attempt')):
+	  if($this->post('first-attempt') === 'false'):
 	    $this->form_validation->set_error_delimiters("", "");
 		$this->form_validation->set_rules("current", "Current Password", "trim|required|xss_clean|callback_verify_old_pass_post");
 		$this->form_validation->set_rules("newpass", "New Password", "trim|required|min_length[5]|max_length[32]");
