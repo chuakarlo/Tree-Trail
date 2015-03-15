@@ -7,6 +7,8 @@ class statistics extends TreeTrailController {
   public function index_get() {
 	  $this->load->model('statistics_model','s_model');
 	  $this->load->model('session_model','session_m');
+	  $this->load->model("login_model", "login");
+      $data = ['name' => $this->login->getName($this->session->userdata("user_id"))];
 	  
 	  $stat = $this->s_model->retrieve_all();
 	  $data['num_rows'] = $stat->num_rows();

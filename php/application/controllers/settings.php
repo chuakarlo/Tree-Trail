@@ -4,11 +4,13 @@ class Settings extends TreeTrailController {
 
   public function index_get() {
     $id = $this->session->userdata('user_id');
+    $this->load->model("login_model", "login");
 	
 	if($id > 0):
 	  $db_user_details = $this->db->select("first_name, last_name, middle_name, address, contact_number, gender")->from("user_info")->where_in("user_id", $id)->get()->row();
 	  $db_username = $this->db->select("id, username, password, password_updated_on")->from("users")->where_in("id", $id)->get()->row();
 	  $user = [
+			'name' => $this->login->getName($this->session->userdata("user_id")),
             "form_id"				=> $id,
             "form_action"			=> "settings/update_info/".$id,				
             "form_last_name"		=> $db_user_details->last_name,
