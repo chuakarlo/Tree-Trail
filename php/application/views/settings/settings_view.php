@@ -129,7 +129,8 @@
 			success: function(data) {
 				try {
 					var json =  JSON.parse(data);
-					
+					console.log(json);
+					console.log(json.response);
 					if(json.response == "Success!" || json.response == "Failure!")
 						show_modal("notice", data);
 				} catch(e) {
