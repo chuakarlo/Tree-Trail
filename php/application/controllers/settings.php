@@ -51,7 +51,7 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_name", $data);
 	  else:
 		if($this->settings->update('name')):
-		  echo "{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Name has been successfully updated!\"}";
+		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Name has been successfully updated!\"}");
 		endif;
 	  endif;
 	elseif($this->post('target') == 'username'):
@@ -65,7 +65,7 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_username", $data);
 	  else:
 		if($this->settings->update('user-name')):
-		  echo "{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Username has been successfully updated!\"}";
+		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Username has been successfully updated!\"}");
 		endif;
 	  endif;
 	elseif($this->post('target') == 'password'):
@@ -81,7 +81,7 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_password", $data);
 	  else:
 		if($this->settings->update('password')):
-		  echo "{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Password has been successfully updated!\"}";
+		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Password has been successfully updated!\"}");
 		endif;
 	  endif;
 	endif;
@@ -102,9 +102,9 @@ class Settings extends TreeTrailController {
 	  $id=$this->input->post('id');
       $result=$this->settings->check_password_match(md5($db_pass_input),$id);
       if($result)
-        echo "true";
+        return TRUE;
       else
-		echo "false";
+		return FALSE;
   }
   
   public function verify_old_pass_post() {
