@@ -6,7 +6,7 @@
 	$newpass = set_value("newpass");
 	$matched = set_value("matched");
 	
-	echo form_open('settings/edit_username', 'role="form" name="passwordform"');
+	echo form_open('settings', 'role="form" name="passwordform"');
 ?>
 
 <div class="form-group <?php echo ($current_error)?"has-error has-feedback":""; ?>">

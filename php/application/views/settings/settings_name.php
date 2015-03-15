@@ -12,7 +12,7 @@
 	$contact = $settings_data["contact"];
 	$gender = $settings_data["gender"];
 	
-	echo form_open('settings/edit_name', 'role="form" name="nameform"');
+	echo form_open('settings', 'role="form" name="nameform"');
 ?>
 
 <div class="form-group <?php echo ($first_name_error)?"has-error has-feedback":""; ?>">
