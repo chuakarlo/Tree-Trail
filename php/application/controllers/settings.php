@@ -51,7 +51,11 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_name", $data);
 	  else:
 		if($this->settings->update('name')):
-		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Name has been successfully updated!\"}");
+		  $this->output->set_output(json_encode([
+		    'response' => 'Success!',
+		    'title' => 'Update Successful',
+		    'body' => 'Name has been successfully updated!'
+		  ]));
 		endif;
 	  endif;
 	elseif($this->post('target') == 'username'):
@@ -65,7 +69,11 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_username", $data);
 	  else:
 		if($this->settings->update('user-name')):
-		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Username has been successfully updated!\"}");
+		  $this->output->set_output(json_encode([
+		    'response' => 'Success!',
+		    'title' => 'Update Successful',
+		    'body' => 'Username has been successfully updated!'
+		  ]));
 		endif;
 	  endif;
 	elseif($this->post('target') == 'password'):
@@ -81,7 +89,11 @@ class Settings extends TreeTrailController {
 		$this->load->view("settings/settings_password", $data);
 	  else:
 		if($this->settings->update('password')):
-		  $this->output->set_output("{\"response\": \"Success!\", \"title\": \"Update Successful\", \"body\": \"Password has been successfully updated!\"}");
+		  $this->output->set_output(json_encode([
+		    'response' => 'Success!',
+		    'title' => 'Update Successful',
+		    'body' => 'Password has been successfully updated!'
+		  ]));
 		endif;
 	  endif;
 	endif;
