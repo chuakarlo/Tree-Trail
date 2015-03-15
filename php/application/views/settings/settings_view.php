@@ -76,7 +76,7 @@
 			type: "POST",
 			data: {
 			  'target' : target,
-			  'first-attempt' : true,
+			  'first-attempt' : 'true',
 			},
 			success: function(data) {
 				$("#settings-"+target).html(data);
@@ -123,7 +123,8 @@
 				'gender' : gender,
 				'address' : address,
 				'contact' : contact,
-				'submit' : action
+				'submit' : action,
+			  'first-attempt' : 'false',
 			},
 			success: function(data) {
 				try {
@@ -149,7 +150,8 @@
 			data: {
 				'target' : 'username',
 				'username' : username,
-				'submit' : action
+				'submit' : action,
+			  'first-attempt' : 'false',
 			},
 			success: function(data) {
 				try {
@@ -179,7 +181,8 @@
 				'current' : current,
 				'newpass' : newpass,
 				'matched' : matched,
-				'submit' : action
+				'submit' : action,
+			  'first-attempt' : 'false',
 			},
 			success: function(data) {
 				try {
