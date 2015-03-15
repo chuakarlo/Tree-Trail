@@ -23,6 +23,12 @@ $lang['is_natural_no_zero']	= "The %s field must contain a number greater than z
 $lang['decimal']			= "The %s field must contain a decimal number.";
 $lang['less_than']			= "The %s field must contain a number less than %s.";
 $lang['greater_than']		= "The %s field must contain a number greater than %s.";
+//custom validation
+$lang['check_if_exist'] = "Invalid Username.";
+$lang['check_if_username_exists'] = "Sorry, that username is already taken.";
+$lang['check_database']		= "Invalid Password.";
+$lang['verify_old_pass_post'] = "Invalid Password";
+$lang['check_if_conflict'] = "Sorry, that username is already taken.";
 
 
 /* End of file form_validation_lang.php */
