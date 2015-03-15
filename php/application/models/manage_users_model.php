@@ -111,7 +111,7 @@ class Manage_users_model extends CI_Model {
 			foreach($user_info->result() as $row):		
 				if ($counter==1):
 					$query = $this->db->select("username")->where("id", $row->user_id)->get("users");
-			echo "HELLO";	
+
 					$merged_data[$row->user_id]["user_id"] = $row->user_id;
 					$merged_data[$row->user_id]["last_name"] = $row->last_name;
 					$merged_data[$row->user_id]["first_name"] = $row->first_name;
@@ -227,14 +227,7 @@ class Manage_users_model extends CI_Model {
 		}
 		return $maxid;
 	}	
-	function getSuperAdminID() {
-		$superadminID=1;
-		$row = $this->db->select('min(id) as id')->get("users")->row();
-		if ($row) {
-		    $superadminID = $row->id; 
-		}
-		return $superadminID;	
-	}	
+	
 	function getCurrentID() {
 		$maxid=0;
 		$row = $this->db->select('MAX(id) as id')->get("users")->row();
