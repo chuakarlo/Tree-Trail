@@ -14,13 +14,13 @@ class statistics extends TreeTrailController {
 	  $data['num_rows'] = $stat->num_rows();
 	  $data['data'] = $stat->result_array();
 
-	  if($this->session_m->isLogin()):
+	  // if($this->session_m->isLogin()):
 		$this->render('statistics_page', $data, [
 			'layout' => 'layout'
 		]);
-	  else:
-	    redirect('/');
-	  endif;
+	  // else:
+	    // redirect('/');
+	  // endif;
 	
   }
   
