@@ -57,8 +57,25 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
       		{{#isLoggedIn}}
-      		<li><a href="<?= base_url('/dashboard'); ?>">Administrator Dashboard</a></li>
-      		<li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
+		  <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{name}}
+			  <b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+			  <li>
+			    <a href="<?= base_url('/settings'); ?>">Edit Profile</a>
+			  </li>
+			  {{#isSuperAdmin}}
+			  <li>
+			    <a href="<?= base_url('/dashboard'); ?>">View Dashboard</a>
+			  </li>
+			  <li>
+			    <a href="<?= base_url('/manage_users'); ?>">Manage User Accounts</a>
+			  </li>
+			  {{/isSuperAdmin}}
+      		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
+			</ul>
+          </li>
       		{{/isLoggedIn}}
       		{{^isLoggedIn}}
           <li class="dropdown">
