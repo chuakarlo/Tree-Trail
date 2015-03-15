@@ -17,19 +17,17 @@ class Manage_users_model extends CI_Model {
 		$gender 						= $this->input->post("gender");
 		$contactnumber				 	= $this->input->post("contactnumber");
 		$address 						= $this->input->post("address");
-		$user_id		 				= 1; //get from session
 
 		$this->db->trans_start();
 		$users = array(
-			"username"	=> $username,
-			"password"	=> $password,
+			"username"		=> $username,
+			"password"		=> $password,
 			"type"			=> $type,
 			"date"			=> mdate("%Y-%m-%d"),
 			"password_updated_on" => mdate("%Y-%m-%d")
 		);
 		$this->db->insert("users", $users);
-		$user_id = $this->db->insert_id();
-
+		$user_id = $this->getCurrentID();
 		$user_info = array(
 			"first_name"			=> $firstname,
 			"middle_name"			=> $middlename,
@@ -104,33 +102,37 @@ class Manage_users_model extends CI_Model {
 		return $user_data;
 	}
 
-	function get_all() {
-		$name			= $this->db->select("user_id, first_name, middle_name, last_name")->from("user_info")->get();
-		$username		= $this->db->select("id, username, date")->from("users")->get();
-
-		if($name->num_rows() > 0):
-			foreach($name->result() as $row):			
-				$query = $this->db->select("username")->where("id", $row->user_id)->get("users");
-			
-				$merged_data[$row->user_id]["user_id"] = $row->user_id;
-				$merged_data[$row->user_id]["last_name"] = $row->last_name;
-				$merged_data[$row->user_id]["first_name"] = $row->first_name;
-				$merged_data[$row->user_id]["middle_name"] = $row->middle_name;
-				$merged_data[$row->user_id]["update_id"] = "updateinfo_".$row->user_id;
-				$merged_data[$row->user_id]["update_link"] = "<a href='#' onClick='show_modal(\"update\", \"".$row->user_id."\", ".$row->user_id.")'>Update</a>";
-				$merged_data[$row->user_id]["delete_link"] = "<a href='#' onClick='show_modal(\"delete\", \"".$query->first_row()->username."\", ".$row->user_id.")'>Delete</a>";
+	function get_all() {		
+		$user_info			= $this->db->select("user_id, first_name, middle_name, last_name")->from("user_info")->get();
+		$users				= $this->db->select("id, username, date")->from("users")->get();
+		$merged_data = array();
+		if($user_info->num_rows() > 0):
+			$counter = 0;
+			foreach($user_info->result() as $row):		
+				if ($counter==1):
+					$query = $this->db->select("username")->where("id", $row->user_id)->get("users");
+			echo "HELLO";	
+					$merged_data[$row->user_id]["user_id"] = $row->user_id;
+					$merged_data[$row->user_id]["last_name"] = $row->last_name;
+					$merged_data[$row->user_id]["first_name"] = $row->first_name;
+					$merged_data[$row->user_id]["middle_name"] = $row->middle_name;
+					$merged_data[$row->user_id]["update_id"] = "updateinfo_".$row->user_id;
+					$merged_data[$row->user_id]["update_link"] = "<a href='#' onClick='show_modal(\"update\", \"".$row->user_id."\", ".$row->user_id.")'>Update</a>";
+					$merged_data[$row->user_id]["delete_link"] = "<a href='#' onClick='show_modal(\"delete\", \"".$query->first_row()->username."\", ".$row->user_id.")'>Delete</a>";
+				endif;
+				$counter=1;
 			endforeach;
-
-			foreach($username->result() as $row):
-				$merged_data[$row->id]["username"] = $row->username;
-				$merged_data[$row->id]["date"] = $row->date;
+			foreach($users->result() as $row):
+				if ($counter==2):
+					$merged_data[$row->id]["username"] = $row->username;
+					$merged_data[$row->id]["date"] = $row->date;
+				endif;
+				$counter=2;
 			endforeach;
-		else:
-			$merged_data = array();
 		endif;
 
-		$name->free_result();
-		$username->free_result();
+		$user_info->free_result();
+		$users->free_result();
 
 		return $merged_data;
 	}
@@ -225,6 +227,21 @@ class Manage_users_model extends CI_Model {
 		}
 		return $maxid;
 	}	
-	
+	function getSuperAdminID() {
+		$superadminID=1;
+		$row = $this->db->select('min(id) as id')->get("users")->row();
+		if ($row) {
+		    $superadminID = $row->id; 
+		}
+		return $superadminID;	
+	}	
+	function getCurrentID() {
+		$maxid=0;
+		$row = $this->db->select('MAX(id) as id')->get("users")->row();
+		if ($row) {
+		    $maxid = $row->id; 
+		}
+		return $maxid;
+	}	
 }
 ?>
