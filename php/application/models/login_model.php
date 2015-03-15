@@ -21,11 +21,15 @@ class Login_model extends CI_Model {
       return FALSE;
     }
 	
-    function isSuperAdmin() {
+	public function getName($id) {
+		return $this->db->where("user_id", $id)->get('user_info')->row('first_name');
+	}
+	
+    public function isSuperAdmin() {
       return $this->session->userdata('type') == "super-admin" ? TRUE : FALSE;
     }
 	
-    function isLogin() {
+    public function isLogin() {
       return $this->session->userdata('username') != '' ? TRUE : FALSE;
     }
 }
