@@ -3,7 +3,7 @@
 
 	$username = $settings_data["username"];
 	
-	echo form_open('settings/edit_username', 'role="form" name="usernameform"');
+	echo form_open('settings', 'role="form" name="usernameform"');
 ?>
 
 <div class="form-group <?php echo ($username_error)?"has-error has-feedback":""; ?>">
