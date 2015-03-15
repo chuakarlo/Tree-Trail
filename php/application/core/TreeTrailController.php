@@ -40,7 +40,8 @@ class TreeTrailController extends RestController{
     $data['isAdminString'] = $this->isAdmin ? 'true' : 'false';
     $data['isSuperAdminString'] = $this->isSuperAdmin ? 'true' : 'false';
     
-    echo $renderer->render($this->load->view($view, NULL, true), $data);
+    $contents = $renderer->render($this->load->view($view, NULL, true), $data);
+    $this->output->set_output($contents);
   }
 
   // Redirects super user to dashboard. Override to avoid.
