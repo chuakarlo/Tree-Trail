@@ -15,14 +15,14 @@
 
     <div class="col-lg-12">
         {{#message}}
-          <div class="col-lg-3"></div>
-          <div class="alert alert-success alert-dismissable col-lg-7">{{message}}</div>
+          <div class="col-lg-2"></div>
+          <div class="alert alert-success alert-dismissable col-lg-8">{{message}}</div>
           <div class="col-lg-2"></div>
         {{/message}}
-    <div>
+    </div>
 
-    <div class="col-lg-3"></div>
-    <div class="col-lg-7">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
  <div class="table-responsive">
   <table class ="table table-hover">
      <tr>
@@ -56,7 +56,8 @@
     </tr>
   {{/ contacts }}
   </table></div></div>
-  <div class="col-lg-2" id="add">
+  <div class="col-lg-2"></div>
+  <div id="add">
         <button class='btn btn-primary' data-toggle="modal" data-target="#myModal">Add Contact</button>
 
       <!--MODAL-->
