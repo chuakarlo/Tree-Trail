@@ -1,5 +1,9 @@
 {{< layout }}
 
+{{$ extra_styles}}
+  <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+{{/ extra_styles}}
+
 {{$ extra_inline_styles }}
     .contact{
       text-align: center;
@@ -10,7 +14,7 @@
 {{/ extra_inline_styles }}
 
 {{$ extra_content}}
- <div class="content"> 
+ <div class="container" id="page-wrapper"> 
     <div class="contact"> <h1>Manage Contact</h1></br> </div> 
 
     <div class="col-lg-12">

@@ -14,9 +14,6 @@ class TreeTrailController extends RestController{
     $this->isLoggedIn = $this->tree_trail_session->isLogin();
     $this->isSuperAdmin = $this->tree_trail_session->isSuperAdmin();
     $this->isAdmin = ($this->isLoggedIn && !$this->isSuperAdmin);
-
-    if($this->isSuperAdmin) $this->redirectToDashboardIfSuperAdmin();
-
   }
 
   public function render($view = NULL, $data = [], $partials = []){
