@@ -15,6 +15,8 @@ require([
   'rvc!components/badge-filter',
 ],function(TreeApp, BadgeFilter){
 
+  var FilteredBadges = require('stores/badges-filtered');
+
   new TreeApp({
     el: '.content',
     data: {
@@ -33,6 +35,10 @@ require([
 
   $('#badge-filter').on('click', function(){
     badgeFilter.open();
+  });
+
+  $('#view-pending-badges').on('click', function(){
+    FilteredBadges.filter(['unapproved']);
   });
 
 });

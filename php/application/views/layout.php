@@ -77,7 +77,7 @@
           <a href="<?= base_url('/contact'); ?>">Manage Contacts</a>
         </li>
         <li>
-          <a href="<?= base_url('/'); ?>">View Pending Badges</a>
+          <a href="#" id="view-pending-badges">View Pending Badges</a>
         </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>
