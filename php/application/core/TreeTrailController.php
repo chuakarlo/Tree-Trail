@@ -3,18 +3,17 @@
 
 class TreeTrailController extends RestController{
 
-  protected $isLoggedIn = true;
+  protected $isLoggedIn = false;
   protected $isSuperAdmin = false;
-  protected $isAdmin = true;
+  protected $isAdmin = false;
 
   public function __construct(){
     parent::__construct();
     $this->load->model('session_model', 'tree_trail_session');
     
-    /*$this->isLoggedIn = $this->tree_trail_session->isLogin();
+    $this->isLoggedIn = $this->tree_trail_session->isLogin();
     $this->isSuperAdmin = $this->tree_trail_session->isSuperAdmin();
-
-    $this->isAdmin = ($this->isLoggedIn && !$this->isSuperAdmin);*/
+    $this->isAdmin = ($this->isLoggedIn && !$this->isSuperAdmin);
 
     if($this->isSuperAdmin) $this->redirectToDashboardIfSuperAdmin();
 
