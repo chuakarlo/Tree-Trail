@@ -28,7 +28,7 @@ body{
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="input-group">
-					<span class="input-group-addon">Select Type of Tree:</span>
+					<span class="input-group-addon">Select Municipality:</span>
 					<select id="drop-generate" name="drop-generate" class="form-control">
 					</select>
 
@@ -44,7 +44,7 @@ body{
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<br>
-				<label>Municipalities: </label>
+				<label>Type of trees: </label>
 			</div>
 			<div class="col-md-3"></div>
 							
@@ -100,8 +100,8 @@ body{
 	x = 0;
 	{{# data}}{{# types}}tempData[x]='{{.}}'; x++;{{/ types}}{{/ data}}
 	data2['types'] = tempData;
-	console.log(data2);
-	for(x = 0 ;x < rows; x++) { addData(data2['quantity'][x],data2['name'][x],data2['id'][x],data2['types'][x]); }
+	// console.log(data2);
+	// for(x = 0 ;x < rows; x++) { addData(data2['quantity'][x],data2['name'][x],data2['id'][x],data2['types'][x]); }
 	init();
 	</script>
   {{/ extra_scripts }}
