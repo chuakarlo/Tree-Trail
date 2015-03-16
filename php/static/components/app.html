@@ -23,6 +23,7 @@
   showManagementButtons="{{ isLoggedIn }}"
   on-editMarker="editMarker"
   on-badgedeletesuccess="handleBadgeDeleteSuccess"
+  on-closeDataPane="closeDataPane"
 />
 
 <script>
@@ -54,6 +55,7 @@ component.exports = {
     this.on('editMarker', this.editMarker);
     this.on('handleBadgeDeleteSuccess', this.handleBadgeDeleteSuccess);
     this.on('handleFormSuccess', this.handleFormSuccess);
+    this.on('closeDataPane', this.closeDataPane);
 
   },
   handleMapClick: function(event){
@@ -109,6 +111,9 @@ component.exports = {
       return photo.image_path;
     });
     this.findComponent('sidebar-form').set('input', currentBadge);
+  },
+  closeDataPane: function(){
+    this.hideDataSidebar();
   },
 };
 

@@ -11,12 +11,16 @@
   </div>
   {{/}}
 
+  <a href="#" class="management-buttons pull-right" on-click="closeDataPane"><span class="glyphicon glyphicon-remove"></span></button>
+
   {{#showManagementButtons}}
   <a href="#" class="management-buttons pull-right" on-click="editMarker"><span class="glyphicon glyphicon-pencil"></span></button>
   <a href="#" class="management-buttons pull-right" on-click="deleteMarker"><span class="glyphicon glyphicon-trash"></span></button>
   {{/}}
 
-  {{# !(showManagementButtons || badge.approved) }}<div class="alert alert-warning">This location is pending moderation and will not be visible on the map until accepted.</div>{{/}}
+  {{# !(showManagementButtons || badge.approved) }}
+    <div class="alert alert-warning">This location is pending moderation and will not be visible on the map until accepted.</div>
+  {{/}}
 
   <h2 class="location-name">{{badge.name}}</h2>
 
