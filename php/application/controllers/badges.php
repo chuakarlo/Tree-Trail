@@ -9,7 +9,7 @@ class Badges extends TreeTrailController {
   }
 
   public function index_get(){
-    $badges = $this->isAdmin ? $this->badges->readWithPhotos() : $this->badges->readWithPhotosApproved();
+    $badges = $this->isLoggedIn ? $this->badges->readWithPhotos() : $this->badges->readWithPhotosApproved();
     $this->response($badges);
   }
 
