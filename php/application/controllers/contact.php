@@ -13,41 +13,20 @@ class Contact extends TreeTrailController {
     $this->load->model("login_model", "login");
     $c = $this->get('key');
     if($c == 'ammil'){
-      if($this->isAdmin){
-      $this->render('contacts',['contacts'=>$this->contacts->read()],[
+      $this->render('contacts',[
+        'contacts'=>$this->contacts->read(),
+        'name' => $this->login->getName($this->session->userdata("user_id")),
+      ],[
      'layout'=>'layout'
       ]);
-     }
-    else if($this->isSuperAdmin){
-      $this->render('contacts',['contacts'=>$this->contacts->read()],[
-     'layout'=>'layout'
-      ]);
-     }
-    }else{
-    if($this->isAdmin){
+     }else{
+    if($this->isLoggedIn){
       $this->render('contact_admin',[
         'contacts'=>$this->contacts->read(),
         'name' => $this->login->getName($this->session->userdata("user_id")),
       ],[
      'layout'=>'layout'
     ]);
-    }
-    else if($this->isAdmin){
-      $this->render('contact',['contacts'=>$this->contacts->read()],[
-     'layout'=>'layout'
-    ]);
-    }
-    else if($this->isSuperAdmin){
-       $this->render('contact_admin',[
-        'contacts'=>$this->contacts->read(),
-        'name' => $this->login->getName($this->session->userdata("user_id")),
-      ],[
-     'layout'=>'layout'
-    ]);
-    }else{
-      $this->render('contacts',['contacts'=>$this->contacts->read()],[
-     'layout'=>'layout'
-      ]);
     }
     }//end else
   }

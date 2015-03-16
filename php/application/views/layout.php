@@ -68,9 +68,6 @@
 			  <li>
 			    <a href="<?= base_url('/settings'); ?>">Edit Profile</a>
 			  </li>
-        <li>
-          <a href="<?= base_url('/contact'); ?>">Manage Contact</a>
-        </li>
 			  {{#isSuperAdmin}}
 			  <li>
 			    <a href="<?= base_url('/manage_users'); ?>">Manage User Accounts</a>
