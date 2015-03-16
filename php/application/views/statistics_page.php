@@ -90,7 +90,7 @@ body{
 	data2['quantity'] = tempData;
 	tempData = [];
 	x = 0;
-	{{# data}}{{# name}}tempData[x]='{{.}}'; x++;{{/ name}}{{/ data}}
+	{{# data}}{{# name}}tempData[x]="{{.}}"; x++;{{/ name}}{{/ data}}
 	data2['name'] = tempData;
 	tempData = [];
 	x = 0;
@@ -98,7 +98,7 @@ body{
 	data2['id'] = tempData;
 	tempData = [];
 	x = 0;
-	{{# data}}{{# types}}tempData[x]='{{.}}'; x++;{{/ types}}{{/ data}}
+	{{# data}}{{# types}}tempData[x]="{{.}}"; x++;{{/ types}}{{/ data}}
 	data2['types'] = tempData;
 	// console.log(data2);
 	// for(x = 0 ;x < rows; x++) { addData(data2['quantity'][x],data2['name'][x],data2['id'][x],data2['types'][x]); }
