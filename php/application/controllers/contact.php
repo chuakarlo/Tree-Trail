@@ -9,14 +9,21 @@ class Contact extends TreeTrailController {
   }
 
   public function index_get(){
+    $this->load->model("login_model", "login");
 
     if($this->isAdmin){
-      $this->render('contact_admin',['contacts'=>$this->contacts->read()],[
+      $this->render('contact_admin',[
+        'contacts'=>$this->contacts->read(),
+        'name' => $this->login->getName($this->session->userdata("user_id")),
+      ],[
      'layout'=>'layout'
     ]);
     }
     else if($this->isSuperAdmin){
-       $this->render('contact_admin',['contacts'=>$this->contacts->read()],[
+       $this->render('contact_admin',[
+        'contacts'=>$this->contacts->read(),
+        'name' => $this->login->getName($this->session->userdata("user_id")),
+      ],[
      'layout'=>'layout'
     ]);
     }else{
