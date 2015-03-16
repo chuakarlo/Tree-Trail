@@ -86,7 +86,7 @@ body{
 	var tempData = [];
 	var data2 = [];
 	var x = 0;
-	{{# data}}{{# quantity}}tempData[x]={{.}}; x++;{{/ quantity}}{{/ data}}
+	{{# data}}{{# quantity}}tempData[x]={{.}} - 1; x++;{{/ quantity}}{{/ data}}
 	data2['quantity'] = tempData;
 	tempData = [];
 	x = 0;
@@ -100,7 +100,7 @@ body{
 	x = 0;
 	{{# data}}{{# types}}tempData[x]="{{.}}"; x++;{{/ types}}{{/ data}}
 	data2['types'] = tempData;
-	// console.log(data2);
+	console.log(data2);
 	// for(x = 0 ;x < rows; x++) { addData(data2['quantity'][x],data2['name'][x],data2['id'][x],data2['types'][x]); }
 	init();
 	</script>
