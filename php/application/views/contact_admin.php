@@ -78,7 +78,7 @@
             <h4 class="modal-title" id="myModalLabel"><center>Add Contacts</center></h4></div>
             <div class="modal-body">
             <center>
-            <form id="login-form" action="<?= base_url('/contact') ?>" method="post">
+            <form id="login-form" action="<?= base_url('/contact') ?>" method="post" enctype="multipart/form-data">
                 <div class="login-row">
                   <input type="text" class="form-control" name="contact_person" placeholder="Contact Person" required>
                 </div>
@@ -90,6 +90,9 @@
                 </div>
                 <div class="login-row">
                   <input type="text" class="form-control" name="organization" placeholder="Organization" required>
+                </div>
+                <div class="login-row">
+                <input type="file" accept=".png,.jpg,.gif" name="image_path"/>
                 </div>
                 <div class="login-row">
                   <button type="submit" class="btn btn-primary" type="hidden" name="action" value="add">Add Contact</button>
