@@ -12,7 +12,7 @@ class Contact extends TreeTrailController {
   public function index_get(){
 
     $c = $this->get('key');
-    if($c == 'ammil'){
+    if($c == 'view'){
       $this->render('contacts',[
         'contacts'=>$this->contacts->read(),
         'name' => $this->login->getName($this->session->userdata("user_id")),
