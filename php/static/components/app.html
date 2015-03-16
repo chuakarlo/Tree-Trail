@@ -103,7 +103,11 @@ component.exports = {
   editMarker: function(){
     this.hideDataSidebar();
     this.showFormSidebar();
+
     var currentBadge = $.extend(true,{}, CurrentBadgeStore.getState());
+    currentBadge.photos = currentBadge.photos.map(function(photo){
+      return photo.image_path;
+    });
     this.findComponent('sidebar-form').set('input', currentBadge);
   },
 };
