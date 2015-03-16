@@ -13,7 +13,11 @@ class statistics extends TreeTrailController {
 	  $stat = $this->s_model->retrieve_all();
 	  $data['num_rows'] = $stat->num_rows();
 	  $data['data'] = $stat->result_array();
-
+	
+	  foreach ($data['data'] as &$value) {
+		$value['quantity'] = $value['quantity'] + 1;
+	  }
+	
 	  if($this->session_m->isLogin()):
 		$this->render('statistics_page', $data, [
 			'layout' => 'layout'
