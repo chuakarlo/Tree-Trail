@@ -40,7 +40,8 @@ class Contact extends TreeTrailController {
     $validator->rule('required', ['contact_person', 'contact_number','email','organization']);
     $validator->rule('lengthMin', ['contact_person','organization'], 6);
     $validator->rule('lengthMin', ['contact_number'], 7);
-
+    $validator->rule('numeric', ['contact_number']);
+    $validator->rule('email', 'email');
     $iscon = $validator->validate();
     if($iscon){
       $this->contacts->create($con);
@@ -50,7 +51,7 @@ class Contact extends TreeTrailController {
       ]);
     } else{
       $this->renderPageWithData([
-        'error' => 'Account not successfully created. Please try again (each field requires a minimum of 7 characters).',
+        'error' => 'Account not successfully updated (each field requires a minimum of 7 characters, a valid number and email).',
         'contacts'=>$this->contacts->read()
       ]);
     }
@@ -67,7 +68,8 @@ class Contact extends TreeTrailController {
     $validator->rule('required', ['contact_person', 'contact_number','email','organization']);
     $validator->rule('lengthMin', ['contact_person','organization'], 6);
     $validator->rule('lengthMin', ['contact_number'], 7);
-
+    $validator->rule('numeric', ['contact_number']);
+    $validator->rule('email', 'email');
     $iscon = $validator->validate();
     if($iscon){
      $this->contacts->update($con);
@@ -77,7 +79,7 @@ class Contact extends TreeTrailController {
       ]);
     }else{
       $this->renderPageWithData([
-        'error' => 'Account not successfully updated. Please try again (each field requires a minimum of 7 characters).',
+        'error' => 'Account not successfully updated (each field requires a minimum of 7 characters, a valid number and email).',
         'contacts'=>$this->contacts->read()
       ]);
     }
