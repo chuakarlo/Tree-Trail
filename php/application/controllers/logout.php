@@ -13,7 +13,4 @@ class Logout extends TreeTrailController {
     ]);
   }
 
-  // Override because we want the admin to visit logout, instead of redirect
-  public function redirectToDashboardIfSuperAdmin(){}
-  
 }

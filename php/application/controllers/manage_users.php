@@ -9,19 +9,18 @@ class Manage_users extends CI_Controller {
 
   public function index(){
 	  $this->load->model('session_model', 'session_m');
+    $this->load->model("login_model", "login");
 
 			$users = $this->users->get_all();
 			$users_table = $this->users->pretty($users);
 
+			$data['name'] = $this->login->getName($this->session->userdata("user_id"));
 			$data["users"] = $users_table;
-			$data["active"] = "manage_users";
 			$data["isSuperAdmin"] = $this->session_m->isSuperAdmin();
+			$data["isLoggedIn"] = $this->session_m->isLogin();
 			
 			if($this->session_m->isLogin() && $this->session_m->isSuperAdmin()):
-				$this->load->view('header');			
-				$this->load->view('sidemenu', $data);
-				$this->load->view('manage_users', $data);			
-				$this->load->view('footer');
+				$this->load->view('manage_users', $data);
 			else:
 				redirect('/');
 			endif;
