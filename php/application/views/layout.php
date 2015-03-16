@@ -56,7 +56,7 @@
           {{#isMap}}
           <li><a href="#" id="badge-filter">Filter Badges</a></li>
           {{/isMap}}
-          <li><a href="<?= base_url('/contact'); ?>">Contact</a></li>
+          <li><a href="<?= base_url('/contact?key=ammil'); ?>" method="get">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
       		{{#isLoggedIn}}
@@ -68,6 +68,9 @@
 			  <li>
 			    <a href="<?= base_url('/settings'); ?>">Edit Profile</a>
 			  </li>
+        <li>
+          <a href="<?= base_url('/contact'); ?>">Manage Contact</a>
+        </li>
 			  {{#isSuperAdmin}}
 			  <li>
 			    <a href="<?= base_url('/dashboard'); ?>">View Dashboard</a>
