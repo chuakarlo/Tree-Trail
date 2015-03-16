@@ -60,6 +60,7 @@ class Badges extends TreeTrailController {
 
     $photos = isset($data['photos']) ? $data['photos'] : [];
     unset($data['photos']);
+    unset($data['approvalRequest']);
     $savedBadge = $this->badges->update($data);
     if(!$savedBadge) return $this->response(null, 500);
     
@@ -69,6 +70,7 @@ class Badges extends TreeTrailController {
     }, $photos));
     if(!$savedPhotos) return $this->response(null, 500);
 
+    if($this->put('approvalRequest')) $this->mailConfirmation($savedBadge);
     $savedBadge['photos'] = $photos;
     $this->response($savedBadge, 201);
   }
@@ -99,6 +101,12 @@ class Badges extends TreeTrailController {
         'uploader_ip' => '',
       ]);
     }, $photos));
+  }
+
+  private function mailConfirmation($savedBadge = []){
+    $subject = "Your TreeTrail badge has been approved";
+    $message = "Your badge " . $savedBadge['name'] . " has been approved.";
+    mail($savedBadge['email'], $subject, $message);
   }
 
 }
