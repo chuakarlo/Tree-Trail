@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/datatables/media/css/jquery.dataTables.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
   
   <style>
@@ -124,12 +125,12 @@
               $table["table_open"] = "<table class='table table-striped table-hover' id='userTable'>";
               $this->table->set_template($table);
               
-              $user_header      = array("data" => "Name", "data-class" => "expand");
-              $username_header  = array("data" => "Username", "data-hide" => "phone,tablet");
-              $date_header      = array("data" => "Date Added", "data-hide" => "phone");
+              $user_header      = array("data" => "Name");
+              $username_header  = array("data" => "Username");
+              $date_header      = array("data" => "Date Added");
        
               
-              $this->table->set_heading($user_header, $username_header, $date_header);
+              $this->table->set_heading($user_header, $username_header, $date_header, array('width'=> '10%'),array('width'=> '10%'));
 
               echo $this->table->generate($users);
             ?>
@@ -157,40 +158,26 @@
 
 <script src="<?= base_url('static/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
   <script src="<?= base_url('static/node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+  <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
 
 
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var responsiveHelper = undefined;
-    var breakpointDefinition = {
-      tablet: 1024,
-      phone: 480
-    };
     var tableElement = $('#userTable');
 
     tableElement.dataTable({
+      bLengthChange : false,
+      bFilter : false,
       aoColumnDefs : [{
         bSortable : false,
-        aTargets : [3,4,5,6,7,8]
+        aTargets : [3,4]
       }],
-      autoWidth: false,
-      preDrawCallback: function() {
-        // Initialize the responsive datatables helper once.
-        if(!responsiveHelper) {
-          responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
-        }
-      },
-      rowCallback: function(nRow) {
-        responsiveHelper.createExpandIcon(nRow);
-      },
-      drawCallback: function(oSettings) {
-        responsiveHelper.respond();
-      }
+      autoWidth: false
     });
     
     $("#usermodal").on("hidden.bs.modal", function(e) {
-      $(location).attr("href", "users");
+      $(location).attr("href", "manage_users");
     });
 
     
