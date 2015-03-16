@@ -29,16 +29,21 @@
 
   <dl>
     <dt>Location</dt>
+    <dd>Municipality: {{badge.municipality}}</dd>
     <dd>Longitude: {{badge.longitude}}</dd>
     <dd>Latitude: {{badge.latitude}}</dd>
   </dl>
 
+  {{# badge.photos.length}}
   <dl>
     <dt>Photos</dt>
     {{#badge.photos}}
     <dt><img class="location-photo" src="/static/uploaded_photos/{{image_path}}" /></dt>
     {{/}}
   </dl>
+  {{/}}
+
+
   {{/}}
 </div>
 

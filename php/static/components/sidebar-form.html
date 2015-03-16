@@ -32,6 +32,15 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-12 form-group">
+        <select class="form-control" value="{{input.municipality}}">
+          {{#municipalities}}
+            <option value="{{.}}">{{.}}</option>
+          {{/}}
+        </select>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-sm-12 form-group text-center">
         <photo-upload path="/static/uploaded_photos" photos="{{input.photos}}" />
       </div>
@@ -160,6 +169,7 @@ function createBlankInput() {
     quantity: '',
     email: '',
     photos: [],
+    municipality: ''
   };
 }
 
@@ -168,9 +178,61 @@ component.exports = {
   data: {
     input: createBlankInput(),
     errors: null,
+    municipalities: [
+      'Danao',
+      'Talisay',
+      'Toledo',
+      'Bogo',
+      'Carcar',
+      'Naga',
+      'Alcantara',
+      'Alcoy',
+      'Alegria',
+      'Aloguinsan',
+      'Argao',
+      'Asturias',
+      'Badian',
+      'Balamban',
+      'Bantayan',
+      'Barili',
+      'Boljoon',
+      'Borbon',
+      'Carmen',
+      'Catmon',
+      'Compostela',
+      'Consolacion',
+      'Cordova',
+      'Daanbantayan',
+      'Dalaguete',
+      'Dumanjug',
+      'Ginatilan',
+      'Liloan',
+      'Madridejos',
+      'Malabuyoc',
+      'Medellin',
+      'Minglanilla',
+      'Moalboal',
+      'Oslob',
+      'Pilar',
+      'Pinamungajan',
+      'Poro',
+      'Ronda',
+      'Samboan',
+      'San Fernando',
+      'San Francisco',
+      'San Remigio',
+      'Santa Fe',
+      'Santander',
+      'Sibonga',
+      'Sogod',
+      'Tabogon',
+      'Tabuelan',
+      'Tuburan',
+      'Tudela',
+    ]
   },
   computed: {
-    canEditCoords: function(){
+    canEditCoords: function() {
       return !!this.get('input.id');
     },
   },
@@ -209,10 +271,10 @@ component.exports = {
 
     component.fire('submit');
   },
-  close: function(event){
+  close: function(event) {
     this.clearForm();
   },
-  clearForm: function(){
+  clearForm: function() {
     this.set('input', createBlankInput());
   }
 };
