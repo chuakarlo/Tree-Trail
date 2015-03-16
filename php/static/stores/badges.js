@@ -29,7 +29,27 @@ define(function(require) {
 
         });
     },
-    update: function() {},
+    update: function(badgeData) {
+      var store = this;
+
+      return $.ajax({
+        type: 'put',
+        url: '/badges/' + badgeData.id,
+        data: badgeData,
+      }).then(function(response) {
+        
+        var existingBadge = store.data.filter(function(badge){
+          return badge.id === response.id;
+        })[0];
+
+        $.extend(existingBadge, response);
+        store.trigger('change', [store.data]);
+
+      }, function() {
+
+      });
+
+    },
     delete: function(badgeData) {
       var store = this;
       return $.ajax({

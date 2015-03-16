@@ -21,7 +21,7 @@
 <sidebar-data 
   visible="{{isDataSidebarVisible}}"
   showManagementButtons="{{ isLoggedIn && isAdmin }}"
-  on-markerEdit=""
+  on-editMarker="editMarker"
   on-badgedeletesuccess="handleBadgeDeleteSuccess"
 />
 
@@ -51,6 +51,7 @@ component.exports = {
     this.on('hideFormSidebar', this.hideFormSidebar);
     this.on('handleMarkerClick', this.handleMarkerClick);
     this.on('handleMarkerDelete', this.handleMarkerDelete);
+    this.on('editMarker', this.editMarker);
     this.on('handleBadgeDeleteSuccess', this.handleBadgeDeleteSuccess);
     this.on('handleFormSuccess', this.handleFormSuccess);
 
@@ -98,6 +99,12 @@ component.exports = {
     if(!this.get('isAdmin')){
       alert('The location has successfully been submitted and is awaiting admin moderation');
     }
+  },
+  editMarker: function(){
+    this.hideDataSidebar();
+    this.showFormSidebar();
+    var currentBadge = $.extend(true,{}, CurrentBadgeStore.getState());
+    this.findComponent('sidebar-form').set('input', currentBadge);
   },
 };
 

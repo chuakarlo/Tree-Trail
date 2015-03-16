@@ -192,7 +192,10 @@ component.exports = {
 
     if (errors) return;
 
-    Badges.create(badgeData).then(function(response) {
+    var hasId = !!badgeData.id;
+    var action = hasId ? 'update' : 'create';
+
+    Badges[action](badgeData).then(function(response) {
       component.fire('submitsuccess', response);
       component.clearForm();
     }, function(error) {
