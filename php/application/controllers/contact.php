@@ -6,11 +6,11 @@ class Contact extends TreeTrailController {
     parent::__construct();
     $this->load->helper('url');
     $this->load->model('contact_model','contacts');
+    $this->load->model("login_model", "login");
   }
 
   public function index_get(){
 
-    $this->load->model("login_model", "login");
     $c = $this->get('key');
     if($c == 'ammil'){
       $this->render('contacts',[
@@ -57,7 +57,10 @@ class Contact extends TreeTrailController {
     }
   }
   else if($action == 'edit'){
-      $this->render('contactedit',['contactedit'=>$this->contacts->read([ 'id' => $this->post('id')])],[
+      $this->render('contactedit',[
+        'contactedit'=>$this->contacts->read([ 'id' => $this->post('id')]),
+        'name' => $this->login->getName($this->session->userdata("user_id")),
+      ],[
      'layout'=>'layout'
     ]);
   }

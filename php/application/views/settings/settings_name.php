@@ -51,7 +51,7 @@
 	<?php echo ($address_error)?"<span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>":"" ?>
 </div>
 <div class="form-group <?php echo ($contact_error)?"has-error has-feedback":""; ?>">
-	<label for="contact" class="control-label text-muted"><strong>Contact Number</strong></label>
+	<label for="contact" class="control-label text-muted"><strong>Mobile Number</strong></label>
 	<small class="pull-right text-muted"><?php echo $contact_error; ?></small>
 	<input type="text" class="form-control input-sm" name="contact" value="<?php echo  $contact ?>">
 	<?php echo ($contact_error)?"<span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>":"" ?>

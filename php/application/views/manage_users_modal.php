@@ -49,6 +49,14 @@
 			foreach($initial_values as $field):
 				echo form_input($field);
 			endforeach;
+		else:
+	?>
+
+	<div id="note">
+		<strong>NOTE: </strong> The default password is "123456".
+	</div>
+	<br />
+	<?php
 		endif;
 	?>
 	<div class="form-group <?php echo ($first_name_error)?" has-error has-feedback":""; ?>">
@@ -91,7 +99,7 @@
 	</div>
 	
 	<div class="form-group <?php echo ($contact_number_error)?" has-error has-feedback":""; ?>">
-		<label for="contactnumber" class="control-label">Contact Number</label>
+		<label for="contactnumber" class="control-label">Mobile Number</label>
 		<small class="pull-right text-muted"><?php echo $contact_number_error; ?></small>
 		<input type="text" id="contactnumber" name="contactnumber" class="form-control input-sm" value="<?php echo $contact_number; ?>">
 		<?php echo ($contact_number_error)?"<span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>":"" ?>

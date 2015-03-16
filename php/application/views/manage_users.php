@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('static/node_modules/datatables/media/css/jquery.dataTables.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+  <link rel="icon" href="<?=base_url()?>/favicon.ico" type="image/gif">
   
   <style>
     #login-form .login-row{

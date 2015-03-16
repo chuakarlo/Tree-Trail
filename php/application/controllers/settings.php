@@ -43,7 +43,7 @@ class Settings extends TreeTrailController {
 		$this->form_validation->set_rules("middle-name", "Middle Name", "required");
 		$this->form_validation->set_rules("last-name", "Last Name", "required");
 		$this->form_validation->set_rules("address", "Address", "required");
-		$this->form_validation->set_rules("contact", "Contact Number", "required|numeric");
+		$this->form_validation->set_rules("contact", "Mobile Number", "required|numeric|min_length[11]|max_length[13]");
       endif;
 	  
 	  if(!$this->form_validation->run()):
