@@ -70,9 +70,6 @@
 			  </li>
 			  {{#isSuperAdmin}}
 			  <li>
-			    <a href="<?= base_url('/dashboard'); ?>">View Dashboard</a>
-			  </li>
-			  <li>
 			    <a href="<?= base_url('/manage_users'); ?>">Manage User Accounts</a>
 			  </li>
 			  {{/isSuperAdmin}}

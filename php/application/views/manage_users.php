@@ -42,7 +42,6 @@
         <ul class="nav navbar-nav">
 		      <li><a href="<?= base_url('/statistics'); ?>">Statistics</a></li>
           <li><a href="<?= base_url('/about'); ?>">About Project Tree Trail</a></li>
-          <li><a href="#" id="badge-filter">Filter Badges</a></li>
           <li><a href="<?= base_url('/contact'); ?>">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -56,11 +55,14 @@
 			    <a href="<?= base_url('/settings'); ?>">Edit Profile</a>
 			  </li>
 			  <li>
-			    <a href="<?= base_url('/dashboard'); ?>">View Dashboard</a>
-			  </li>
-			  <li>
 			    <a href="<?= base_url('/manage_users'); ?>">Manage User Accounts</a>
 			  </li>
+        <li>
+          <a href="<?= base_url('/contact'); ?>">Manage Contacts</a>
+        </li>
+        <li>
+          <a href="<?= base_url('/'); ?>">View Pending Badges</a>
+        </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>
           </li>
