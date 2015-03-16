@@ -4,7 +4,7 @@
     .contact{
       text-align: center;
     }
-    #add{
+    .add{
       text-align: center;
     }
 {{/ extra_inline_styles }}
@@ -16,9 +16,14 @@
     <div class="col-lg-12">
         {{#message}}
           <div class="col-lg-2"></div>
-          <div class="alert alert-success alert-dismissable col-lg-8">{{message}}</div>
+          <div class="alert alert-success alert col-lg-8"><center>{{message}}</center></div>
           <div class="col-lg-2"></div>
         {{/message}}
+        {{#error}}
+        <div class="col-lg-2"></div>
+          <div class="alert alert-danger alert col-lg-8"><center>{{error}}</center></div>
+          <div class="col-lg-2"></div>
+         {{/error}}
     </div>
 
     <div class="col-lg-2"></div>

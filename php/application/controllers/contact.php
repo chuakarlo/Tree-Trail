@@ -46,13 +46,37 @@ class Contact extends TreeTrailController {
       ]);
     } else{
       $this->renderPageWithData([
-        'message' => 'Account not successfully created. Please try again.',
+        'error' => 'Account not successfully created. Please try again (each field requires a minimum of 7 characters).',
         'contacts'=>$this->contacts->read()
       ]);
     }
   }
   else if($action == 'edit'){
-    echo "edit";
+      $this->render('contactedit',['contactedit'=>$this->contacts->read([ 'id' => $this->post('id')])],[
+     'layout'=>'layout'
+    ]);
+  }
+  else if($action == 'edited'){
+    $con = $this->post();
+    unset($con['action']);
+    $validator = new Valitron\Validator($con);
+    $validator->rule('required', ['contact_person', 'contact_number','email','organization']);
+    $validator->rule('lengthMin', ['contact_person','organization'], 6);
+    $validator->rule('lengthMin', ['contact_number'], 7);
+
+    $iscon = $validator->validate();
+    if($iscon){
+     $this->contacts->update($con);
+     $this->renderPageWithData([
+        'message' => 'Account has been successfully updated.',
+        'contacts'=>$this->contacts->read()
+      ]);
+    }else{
+      $this->renderPageWithData([
+        'error' => 'Account not successfully updated. Please try again (each field requires a minimum of 7 characters).',
+        'contacts'=>$this->contacts->read()
+      ]);
+    }
   }
   else if($action == 'delete'){
   	$this->contacts->delete(['id'=>$this->post('id')]);
