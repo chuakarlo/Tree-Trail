@@ -1,4 +1,76 @@
-<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Tree Trail</title>
+
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+  
+  <style>
+    #login-form .login-row{
+      width: 250px;
+      padding: 0 15px 15px;
+    }
+    #login-form .login-row:first-child{
+      padding-top: 15px;
+    }
+    body{
+      padding-top: 50px;
+    }
+  {{$ extra_inline_styles }}{{/ extra_inline_styles }}
+  </style>
+  
+  </head>
+<body> 
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">TreeTrail</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+		      <li><a href="<?= base_url('/statistics'); ?>">Statistics</a></li>
+          <li><a href="<?= base_url('/about'); ?>">About Project Tree Trail</a></li>
+          <li><a href="#" id="badge-filter">Filter Badges</a></li>
+          <li><a href="<?= base_url('/contact'); ?>">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+		  <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			  Welcome, <?php echo $name;?>
+			  <b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+			  <li>
+			    <a href="<?= base_url('/settings'); ?>">Edit Profile</a>
+			  </li>
+			  <li>
+			    <a href="<?= base_url('/dashboard'); ?>">View Dashboard</a>
+			  </li>
+			  <li>
+			    <a href="<?= base_url('/manage_users'); ?>">Manage User Accounts</a>
+			  </li>
+      		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
+			</ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  
+  <div id="page-wrapper" class="container">
   <div class="container-fluid">
 
     <div class="row">
@@ -81,7 +153,8 @@
   </div>
 </div>
 
-
+<script src="<?= base_url('static/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
+  <script src="<?= base_url('static/node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
 
 
@@ -240,3 +313,6 @@
   }
 </script>
 
+
+</body>
+</html>

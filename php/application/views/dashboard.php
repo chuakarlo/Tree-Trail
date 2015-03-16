@@ -1,4 +1,11 @@
-<div id="page-wrapper">
+{{< layout }}
+
+{{$ extra_styles }}
+  <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+{{/ extra_styles }}
+
+{{$ extra_content }}
+  <div id="page-wrapper" class="container">
 
   <div class="container-fluid">
 
@@ -10,7 +17,7 @@
         </h1>
         <ol class="breadcrumb">
           <li class="active">
-            <i class="fa fa-dashboard"></i> Welcome, Super Administrator!
+            <i class="fa fa-dashboard"></i> Welcome, {{name}}!
           </li>
         </ol>
       </div>
@@ -26,7 +33,7 @@
                 <i class="fa fa-comments fa-5x"></i>
               </div>
               <div class="col-xs-9 text-right">
-                <div class="huge"><?php echo $users_count ?></div>
+                <div class="huge">{{users_count}}</div>
                 <div>Total Number of Users</div>
               </div>
             </div>
@@ -82,3 +89,11 @@
     </div>
   </div>
 </div>
+{{/ extra_content }}
+
+{{$ extra_libs }}
+  <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
+{{/ extra_libs }}
+
+
+{{/ layout}}

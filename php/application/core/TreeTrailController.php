@@ -14,8 +14,6 @@ class TreeTrailController extends RestController{
     $this->isLoggedIn = $this->tree_trail_session->isLogin();
     $this->isSuperAdmin = $this->tree_trail_session->isSuperAdmin();
     $this->isAdmin = ($this->isLoggedIn && !$this->isSuperAdmin);
-
-    if($this->isSuperAdmin) $this->redirectToDashboardIfSuperAdmin();
   }
 
   public function render($view = NULL, $data = [], $partials = []){
@@ -42,11 +40,6 @@ class TreeTrailController extends RestController{
     
     $contents = $renderer->render($this->load->view($view, NULL, true), $data);
     $this->output->set_output($contents);
-  }
-
-  // Redirects super user to dashboard. Override to avoid.
-  public function redirectToDashboardIfSuperAdmin(){
-    redirect('/dashboard');
   }
 
 }

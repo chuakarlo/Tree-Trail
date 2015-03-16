@@ -1,8 +1,11 @@
 {{< layout }}
 
+{{$ extra_styles}}
+  <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+{{/extra_styles}}
+
 {{$ extra_content }}
-<div class="container">
-  <div class="well">
+<div class="container" id="page-wrapper">
     <h2>Account Settings</h2>	
     <table class="table table-hover">
       <tr>
@@ -39,7 +42,6 @@
 		</td>
 	  </tr>
 	</table>
-  </div>
 </div>
 
 <div class="modal fade" id="settingsmodal" role="dialog" aria-hidden="true">
