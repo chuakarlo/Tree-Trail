@@ -44,16 +44,25 @@ var FilteredBadges = require('stores/badges-filtered');
 
 component.exports = {
   data: {
-    filters : [],
+    filters : [
+      'abundant',
+      'average',
+      'scarce',
+      'unapproved',
+    ],
   },
   open: function(){
     $(this.find('.modal')).modal('show');
   },
   oninit: function(){
+    var component = this;
 
-    this.set('filters', FilteredBadges.filters.slice(0)); 
     this.observe('filters', function(newValue){
       FilteredBadges.filter(newValue);
+    });
+
+    FilteredBadges.on('change', function(badges){
+      component.set('filters', FilteredBadges.filters.slice(0)); 
     });
   }
 };
