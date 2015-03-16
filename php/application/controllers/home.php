@@ -4,7 +4,10 @@ class Home extends TreeTrailController {
 
   public function index_get(){
     $this->load->model("login_model", "login");
-    $data = ['name' => $this->login->getName($this->session->userdata("user_id"))];
+    $data = [
+      'name' => $this->login->getName($this->session->userdata("user_id")),
+      'isMap' => true
+    ];
 
     $this->render('home', $data, [
       'layout' => 'layout'

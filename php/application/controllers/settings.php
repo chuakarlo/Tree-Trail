@@ -61,7 +61,7 @@ class Settings extends TreeTrailController {
 	elseif($this->post('target') == 'username'):
 	  if($this->post('first-attempt') === 'false'):
 		$this->form_validation->set_error_delimiters("", "");
-		$this->form_validation->set_rules("username", "Username", "required|callback_check_if_username_exists|alpha_numeric");
+		$this->form_validation->set_rules("username", "Username", "required|callback_check_if_username_exists|alpha_numeric|min_length[6]");
 	  endif;
 	  
 	  if(!$this->form_validation->run()):
@@ -80,7 +80,7 @@ class Settings extends TreeTrailController {
 	  if($this->post('first-attempt') === 'false'):
 	    $this->form_validation->set_error_delimiters("", "");
 		$this->form_validation->set_rules("current", "Current Password", "trim|required|xss_clean|callback_verify_old_pass_post");
-		$this->form_validation->set_rules("newpass", "New Password", "trim|required|min_length[5]|max_length[32]");
+		$this->form_validation->set_rules("newpass", "New Password", "trim|required|min_length[6]|max_length[32]");
 		$this->form_validation->set_rules("matched", "Confirm", "trim|required|matches[newpass]");
 	  endif;
 
