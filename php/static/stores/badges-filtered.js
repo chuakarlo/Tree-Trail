@@ -27,9 +27,9 @@ define(function(require){
     filter: function(filters){
       this.filters = filters;
       this.data = this.badges.filter(function(badge){
-        var isBadgeFiltered = ~filters.indexOf(badge.abundance);
+        var isBadgeFiltered = (badge.approved && ~filters.indexOf(badge.abundance));
         var isUnapproved = (!badge.approved && ~filters.indexOf('unapproved'));
-        return isBadgeFiltered || isUnapproved;
+        return isUnapproved || isBadgeFiltered;
       });
       this.trigger('change', [this.data]);
     },
