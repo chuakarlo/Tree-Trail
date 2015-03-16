@@ -8,14 +8,19 @@ define(function(require){
     var store = this;
     this.badges = [];
     this.data = [];
-    this.filters = [];
+    this.filters = [
+      'abundant',
+      'average',
+      'scarce',
+      'unapproved',
+    ];
 
     Badges.on('change', function(badges){
       store.badges = badges;
       store.filter(store.filters);
     });
 
-    this.filter([]);
+    this.filter(this.filters);
   }
 
   Store.prototype = $.extend(Object.create(EventEmitter.prototype), {

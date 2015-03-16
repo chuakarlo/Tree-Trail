@@ -26,6 +26,9 @@ require([
   var badgeFilter = new BadgeFilter({
     el: 'body',
     append: true,
+    data: {
+      isLoggedIn: window.isLoggedIn
+    },
   });
 
   $('#badge-filter').on('click', function(){

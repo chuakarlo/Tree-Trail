@@ -20,6 +20,12 @@
             <label><input type="checkbox" name="{{filters}}" value="scarce" />Scarce</label>
             <p>Area is in danger</p>
           </div>
+          {{# isLoggedIn }}
+          <div class="form-group">
+            <label><input type="checkbox" name="{{filters}}" value="unapproved" />Unapproved</label>
+            <p>Area is not yet moderated</p>
+          </div>
+          {{/}}
         </form>
       </div>
     </div>
@@ -44,6 +50,8 @@ component.exports = {
     $(this.find('.modal')).modal('show');
   },
   oninit: function(){
+
+    this.set('filters', FilteredBadges.filters.slice(0)); 
     this.observe('filters', function(newValue){
       FilteredBadges.filter(newValue);
     });
