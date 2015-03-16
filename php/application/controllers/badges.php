@@ -46,7 +46,7 @@ class Badges extends TreeTrailController {
   }
 
   public function index_put(){
-    if(!$this->isAdmin) return $this->response(null, 403);
+    if(!$this->isLoggedIn) return $this->response(null, 403);
 
     $data = $this->put();
     $validator = new Valitron\Validator($data);
@@ -76,7 +76,7 @@ class Badges extends TreeTrailController {
   }
 
   public function index_delete(){
-    if(!$this->isAdmin) return $this->response(null, 403);
+    if(!$this->isLoggedIn) return $this->response(null, 403);
 
     $data = ['id' => $this->uri->segment(2)];
     $validator = new Valitron\Validator($data);
