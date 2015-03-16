@@ -104,7 +104,7 @@ class Manage_users_model extends CI_Model {
 
 	function get_all() {		
 		$user_info			= $this->db->select("user_id, first_name, middle_name, last_name")->from("user_info")->get();
-		$users				= $this->db->select("id, username, date")->from("users")->get();
+		$users				= $this->db->select("id, username, date, type")->from("users")->get();
 		$merged_data = array();
 		if($user_info->num_rows() > 0):
 			foreach($user_info->result() as $row):		
@@ -120,6 +120,7 @@ class Manage_users_model extends CI_Model {
 			foreach($users->result() as $row):
 					$merged_data[$row->id]["username"] = $row->username;
 					$merged_data[$row->id]["date"] = $row->date;
+					$merged_data[$row->id]["type"] = $row->type;
 			endforeach;
 		else:
 			$merged_data = array();
@@ -134,11 +135,13 @@ class Manage_users_model extends CI_Model {
 	function pretty($merged_data) {
 		if(sizeof($merged_data) > 0):
 			foreach($merged_data as $row):
-				$pretty_data[$row["user_id"]][0] = $row["last_name"].", ".$row["first_name"]." ".$row["middle_name"];
-				$pretty_data[$row["user_id"]][1] = $row["username"];
-				$pretty_data[$row["user_id"]][2] = $row["date"];
-				$pretty_data[$row["user_id"]][3] = array("class" => "center-text", "data" => $row["update_link"]);
-				$pretty_data[$row["user_id"]][4] = array("class" => "center-text", "data" => $row["delete_link"]);
+				if($row["type"] != 'super-admin'):
+					$pretty_data[$row["user_id"]][0] = $row["last_name"].", ".$row["first_name"]." ".$row["middle_name"];
+					$pretty_data[$row["user_id"]][1] = $row["username"];
+					$pretty_data[$row["user_id"]][2] = $row["date"];
+					$pretty_data[$row["user_id"]][3] = array("class" => "center-text", "data" => $row["update_link"]);
+					$pretty_data[$row["user_id"]][4] = array("class" => "center-text", "data" => $row["delete_link"]);
+				endif;
 			endforeach;
 		else:
 			$pretty_data = array();

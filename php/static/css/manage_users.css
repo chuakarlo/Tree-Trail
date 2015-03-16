@@ -10,6 +10,14 @@ body {
     }
 }
 
+#note {
+    border-color: green;
+    border-style: solid;
+    background-color: lightgreen;
+    border-width: 5px;
+    padding: 1%;
+}
+
 #wrapper {
     position: absolute;
 	left: 0;
