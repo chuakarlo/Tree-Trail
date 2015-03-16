@@ -96,7 +96,7 @@ component.exports = {
   },
   handleFormSuccess: function(){
     this.hideFormSidebar();
-    if(!this.get('isAdmin')){
+    if(!this.get('isLoggedIn')){
       alert('The location has successfully been submitted and is awaiting admin moderation');
     }
   },
