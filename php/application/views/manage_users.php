@@ -219,7 +219,6 @@
         data: {
         },
         success: function(data) {
-          console.log(data);
           modify_modal("Update Info", data, "<button type='button' id="+action+" class='btn btn-default btn-primary btn-xs submit-button'"+
                               "onClick='submit(this.id);' >Save</button>");
         }
@@ -248,8 +247,8 @@
     var init_gender                 = (action == "update") ? document.forms["userform"].init_gender.value : "";
     var init_contact_number         = (action == "update") ? document.forms["userform"].init_contact_number.value : "";
     var init_address                = (action == "update") ? document.forms["userform"].init_address.value : "";
-    if(username===init_username && lastname===init_last_name && firstname===init_first_name && middlename===init_middle_name && gender===init_gender && contactnumber===init_contact_number && address===init_address){
-    }else console.log("not ok");
+    //if(username===init_username && lastname===init_last_name && firstname===init_first_name && middlename===init_middle_name && gender===init_gender && contactnumber===init_contact_number && address===init_address){
+    //}else console.log("not ok");
     $(".submit-button").addClass("disabled");
     $.ajax({
       url: "<?php echo base_url(); ?>manage_users/manage_users_modal/"+user_id,
@@ -275,14 +274,8 @@
       success: function(data) {
         try {
           var json =  JSON.parse(data);
-          console.log("ok");
           if(json.response == "Success!" || json.response == "Failure!")
             show_modal("notice", data);
-            window.setTimeout(function () {
-               $("#usermodal").modal("hide");
-               window.location.reload();
-            }, 1000);
-          
         } catch(e) {
           $(".submit-button").removeClass("disabled");
           $(".modal-body").html(data);
@@ -294,10 +287,6 @@
   function delete_user(id) {
     $.post("<?php echo base_url(); ?>manage_users/delete_user/"+id, function(data) {
       show_modal("notice", data);
-        window.setTimeout(function () {
-          $("#usermodal").modal("hide");
-            window.location.reload();
-          }, 1000);
     });
   }
 </script>
