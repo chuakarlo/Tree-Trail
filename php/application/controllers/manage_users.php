@@ -33,7 +33,7 @@ class Manage_users extends CI_Controller {
 	
 		$this->form_validation->set_error_delimiters("", "");
 		if($submit == "add"):
-			$this->form_validation->set_rules("username", "Username", "required|alpha_numeric|callback_check_if_username_exists");
+			$this->form_validation->set_rules("username", "Username", "required|alpha_numeric|min_length[6]|callback_check_if_username_exists");
 		else:
 			$this->form_validation->set_rules("username", "Username", "required|alpha_numeric|callback_check_if_conflict");
 		endif;

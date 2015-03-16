@@ -35,7 +35,7 @@
 <script type="text/javascript">
 	$("#newpass").keyup(function(){
 		if($("#newpass").val() != "") {
-			if($("#newpass").val().length < 5) {
+			if($("#newpass").val().length < 6) {
 				$("#new_error").html("<strong style='color: orange'>Too short</strong>");
 			} else {
 				$("#new_error").html("");
