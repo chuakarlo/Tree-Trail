@@ -28,7 +28,7 @@ class Badges extends TreeTrailController {
     $photos = isset($data['photos']) ? $data['photos'] : [];
     unset($data['photos']);
     
-    if($this->isAdmin) $data['approved'] = 1;
+    if($this->isLoggedIn) $data['approved'] = 1;
 
     $savedBadge = $this->badges->create($data);
     if(!$savedBadge) return $this->response(null, 500);
