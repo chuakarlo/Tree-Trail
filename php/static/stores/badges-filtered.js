@@ -22,7 +22,7 @@ define(function(require){
     filter: function(filters){
       this.filters = filters;
       this.data = this.badges.filter(function(badge){
-        return filters.length ? ~filters.indexOf(badge.abundance) : true;
+        return filters.length ? (~filters.indexOf(badge.abundance) && badge.approved) : true;
       });
       this.trigger('change', [this.data]);
     },
