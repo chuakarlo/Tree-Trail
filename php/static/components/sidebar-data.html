@@ -18,7 +18,7 @@
   {{/}}
 
   {{#showManagementButtons && badge.approved}}
-  <a href="#" class="management-buttons pull-right" on-click="deleteMarker"><span class="glyphicon glyphicon-trash"></span></button>
+  <a href="#" class="management-buttons pull-right" on-click="shouldDeleteMarker"><span class="glyphicon glyphicon-trash"></span></button>
   {{/}}
 
   {{# !(showManagementButtons || badge.approved) }}
@@ -111,7 +111,7 @@ component.exports = {
   oninit: function() {
     var component = this;
     
-    this.on('deleteMarker', this.deleteMarker);
+    this.on('shouldDeleteMarker', this.shouldDeleteMarker);
     this.on('acceptMarker', this.acceptMarker);
     this.on('rejectMarker', this.rejectMarker);
     
@@ -120,9 +120,8 @@ component.exports = {
       component.set('badge', data);
     });
   },
-  deleteMarker: function(event){
+  deleteMarker: function(){
     var component = this;
-    event.original.preventDefault();
     Badges.delete({
       id: this.get('badge.id'),
     }).then(function(response){
@@ -149,6 +148,11 @@ component.exports = {
   rejectMarker: function(event){
     event.original.preventDefault();
     var shouldDelete = confirm('Are you sure you want to reject location?');
+    if(shouldDelete) this.deleteMarker();
+  },
+  shouldDeleteMarker: function(event){
+    event.original.preventDefault();
+    var shouldDelete = confirm('Are you sure you want to delete location?');
     if(shouldDelete) this.deleteMarker();
   },
 };
