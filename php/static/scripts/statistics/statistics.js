@@ -51,7 +51,7 @@ function init() {
 					input.className = tree_types[x];
 					input.type = "checkbox";
 					input.name = "tree_types";					
-					input.checked = true;
+					input.checked = false;
 					if(typeof data[locations[y]][tree_types[x]] != 'undefined') {
 						input.id = data[locations[y]][tree_types[x]][1];
 					} else {
@@ -61,7 +61,7 @@ function init() {
 				
 				label.appendChild(input);
 				label.appendChild(document.createTextNode(tree_types[x]));
-				console.log(tree_types[x]);
+				// console.log(tree_types[x]);
 				div.appendChild(label);
 				
 				checkbox.appendChild(div);
@@ -101,7 +101,7 @@ $( document ).ready(function() {
 	  	if(myBarChart==null)
 	  	{
 	  		$(':checkbox').each(function() {
-				if(this.checked) {
+				if(this.checked && this.id != "checkAll") {
 					value = this.id;
 					location_array.push($(this).val());
 					quantity_array.push(value);
@@ -135,75 +135,95 @@ $( document ).ready(function() {
 		
 		var div_checkbox = document.getElementById('checkboxes');
 	
-		while (div_checkbox.firstChild) div_checkbox.removeChild(div_checkbox.firstChild);
+		// while (div_checkbox.firstChild) div_checkbox.removeChild(div_checkbox.firstChild);
 
 		var checkbox = document.createElement('div');
 		checkbox.className = "checkbox";
 		var count = 0;
 		
-		for (x in tree_types) {
-			
-			var div = document.createElement("div");
-				div.className = 'checklist';
-			var label = document.createElement("label");
-				label.className = "checkbox-inline";
-			
-			var input = document.createElement("input");
-				input.className = tree_types[x];
-				input.type = "checkbox";
-				input.name = "tree_types";					
-				input.checked = true;
-				if(typeof data[locations[this.value]][tree_types[x]] != 'undefined') {
-					input.id = data[locations[this.value]][tree_types[x]][1];
-				} else {
-					input.id = 0;
+		var array = document.getElementsByTagName("input");
+
+
+		for(var ii = 0; ii < array.length; ii++)
+		{
+
+		   if(array[ii].type == "checkbox")
+		   {
+				if(array[ii].className == tree_types[array[ii].className]) {
+					console.log(data);
+					console.log(this.value);
+					console.log(array[ii].className);
+					if(typeof data[locations[this.value]][array[ii].className] != 'undefined') {
+						array[ii].id = data[locations[this.value]][array[ii].className][1];
+					} else {
+						array[ii].id = 0;
+					}				
 				}
-				input.value = tree_types[x];
-				input.onclick = function() {
-					changeCheck(this);
-					// $("input[type='checkbox']").trigger('change').attr('checked', 'checked');
-				};
-
-			label.appendChild(input);
-			label.appendChild(document.createTextNode(tree_types[x]));
-			
-			div.appendChild(label);
-			
-			checkbox.appendChild(div);
-			
-			if(count % 3 == 2) {
-				div_checkbox.appendChild(checkbox);
-				checkbox = document.createElement('div');
-				checkbox.className = "checkbox";
-			}
-			count++;
+		   }
 		}
-		count--;
-		if(count % 3 != 2) div_checkbox.appendChild(checkbox);
-	
-		myBarChart.destroy();
-			location_array = [];
-	  		quantity_array = [];
-
-			$(':checkbox:checked').each(function() {
-				value = this.id;
-				location_array.push($(this).val());
-				quantity_array.push(value);
-			});
+		
+		// for (x in tree_types) {
 			
-			var BarChart = {
-				labels : location_array,
-				datasets : [
-					{
-						fillColor : "#5cb85c",
-		                strokeColor : "#3d8b3d",
-						data : quantity_array
-					}
-				]
-				
-			}
+			// var div = document.createElement("div");
+				// div.className = 'checklist';
+			// var label = document.createElement("label");
+				// label.className = "checkbox-inline";
+			
+			// var input = document.createElement("input");
+				// input.className = tree_types[x];
+				// input.type = "checkbox";
+				// input.name = "tree_types";					
+				// input.checked = true;
+				// if(typeof data[locations[this.value]][tree_types[x]] != 'undefined') {
+					// input.id = data[locations[this.value]][tree_types[x]][1];
+				// } else {
+					// input.id = 0;
+				// }
+				// input.value = tree_types[x];
+				// input.onclick = function() {
+					// changeCheck(this);
+				// };
 
-			myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize : 13, scaleFontColor : "#000"});
+			// label.appendChild(input);
+			// label.appendChild(document.createTextNode(tree_types[x]));
+			
+			// div.appendChild(label);
+			
+			// checkbox.appendChild(div);
+			
+			// if(count % 3 == 2) {
+				// div_checkbox.appendChild(checkbox);
+				// checkbox = document.createElement('div');
+				// checkbox.className = "checkbox";
+			// }
+			// count++;
+		// }
+		// count--;
+		// if(count % 3 != 2) div_checkbox.appendChild(checkbox);
+		createNewChart();
+		// myBarChart.destroy();
+			// location_array = [];
+	  		// quantity_array = [];
+
+			// $(':checkbox:checked').each(function() {
+				// value = this.id;
+				// location_array.push($(this).val());
+				// quantity_array.push(value);
+			// });
+			
+			// var BarChart = {
+				// labels : location_array,
+				// datasets : [
+					// {
+						// fillColor : "#5cb85c",
+		                // strokeColor : "#3d8b3d",
+						// data : quantity_array
+					// }
+				// ]
+				
+			// }
+
+			// myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize : 13, scaleFontColor : "#000"});
 		
 		
 	});
@@ -215,8 +235,20 @@ $( document ).ready(function() {
 	
 	$(':checkbox').change(function() {
 		// console.log(this);
-		checkBoxChange(this);
+		if(this.id == "checkAll" ) {
+			checkAllCheckBox(this);
+		} else {
+			checkBoxChange(this);
+		}
 	});
+	
+	function checkAllCheckBox(variable) {
+		$(':checkbox').each(function() {
+			this.checked = variable.checked;
+		});
+		
+		createNewChart();
+	}
 	
 	function checkBoxChange(checkbox) {
 		if(!(myBarChart.datasets[0].bars.length))
@@ -244,32 +276,37 @@ $( document ).ready(function() {
 		}
 		else if(!(checkbox.checked))
 		{
-			myBarChart.destroy();
-			location_array = [];
-	  		quantity_array = [];
-
-			$(':checkbox:checked').each(function() {
-				value = this.id;
-				location_array.push(this.value);
-				quantity_array.push(value);
-			});
-			
-			var BarChart = {
-				labels : location_array,
-				datasets : [
-					{
-						fillColor : "#5cb85c",
-		                strokeColor : "#3d8b3d",
-						data : quantity_array
-					}
-				]
-				
-			}
-
-			myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize : 13, scaleFontColor : "#000"});
+			createNewChart();
 		}
 	}
 
-	
+	function createNewChart() {
+		myBarChart.destroy();
+		location_array = [];
+		quantity_array = [];
+
+		$(':checkbox:checked').each(function() {
+			if(this.id != "checkAll") {
+				value = this.id;
+				location_array.push(this.value);
+				quantity_array.push(value);
+			}
+		});
+		
+		var BarChart = {
+			labels : location_array,
+			datasets : [
+				{
+					fillColor : "#5cb85c",
+					strokeColor : "#3d8b3d",
+					data : quantity_array
+				}
+			]
+			
+		}
+
+		myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize : 13, scaleFontColor : "#000"});
+
+	}
 	
 });
