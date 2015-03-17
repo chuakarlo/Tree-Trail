@@ -1,6 +1,6 @@
 <div class="sidebar {{# visible }}visible{{/}}">
   
-  <h4>Add a Badge</h4>
+  <h4>{{#if canEdit }}Edit{{else}}Add{{/if}} Badge</h4>
   <form on-submit="addBadge">
 
     <div class="row">
@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control" placeholder="Latitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}" {{^canEditCoords}}disabled{{/}} />
+        <input type="text" class="form-control" placeholder="Latitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}" {{^canEdit}}disabled{{/}} />
         {{# errors.latitude.length }}
         <ul class="alert alert-warning">
           {{#errors.latitude}}<li>{{.}}</li>{{/}}
@@ -23,7 +23,7 @@
         {{/}}
       </div>
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control" placeholder="Longitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" {{^canEditCoords}}disabled{{/}} />
+        <input type="text" class="form-control" placeholder="Longitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" {{^canEdit}}disabled{{/}} />
         {{# errors.longitude.length }}
         <ul class="alert alert-warning">
           {{#errors.longitude}}<li>{{.}}</li>{{/}}
@@ -232,7 +232,7 @@ component.exports = {
     ]
   },
   computed: {
-    canEditCoords: function() {
+    canEdit: function() {
       return !!this.get('input.id');
     },
   },
