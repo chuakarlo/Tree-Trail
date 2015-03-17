@@ -40,15 +40,25 @@ body{
 			<div class="col-md-3"></div>
 							
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
-				<br>
 				<label>Type of trees: </label>
 			</div>
+			<div class="col-md-3">	</div>							
+		</div>
+		<div class="row">
 			<div class="col-md-3"></div>
-							
-		</div>		
+			<div class="col-md-6">
+				<div class="checkList">
+					<label class="checkbox-inline">
+						<input id="checkAll" type="checkbox"> Check All
+					</label>
+				</div>
+			</div>
+			<div class="col-md-3">	</div>							
+		</div>
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
