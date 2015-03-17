@@ -59,8 +59,11 @@ class Badges extends TreeTrailController {
     $validator->rule('min', 'id', 1);
 
     $photos = isset($data['photos']) ? $data['photos'] : [];
+    
     unset($data['photos']);
     unset($data['approvalRequest']);
+    $data['approved'] = !!$data['approved'] ? 1 : null;
+
     $savedBadge = $this->badges->update($data);
     if(!$savedBadge) return $this->response(null, 500);
     
