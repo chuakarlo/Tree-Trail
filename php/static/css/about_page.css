@@ -19,7 +19,11 @@
 
 /* Headings */
 
-h3, h4, h5, h6 {line-height:1.5 !important}
+body{
+    font-family: bitter, serif;
+}
+h3, h4, h5,
+ h6 {line-height:1.5 !important}
 
 .lead {
     text-align:center;
@@ -120,7 +124,7 @@ margin-right: -20px !important; /* fix bg cover issue */
 
 /* Responsive Image */
 
-img {max-width:100%;height:auto;width:auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+img {max-width:100%;height:auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 
 /* Responsive Video from Zurb Foundation. Copyright (c) 2011 ZURB, http://www.zurb.com/ License: MIT */
 
@@ -257,9 +261,9 @@ body{background-image: none; background-position: initial initial; background-re
 
 h1 {font-family: 'Source Sans Pro', sans-serif; font-weight: normal; font-style: normal; font-size: 40px; line-height: 65px; margin-top: 0px; color: rgb(0, 0, 0);}
 
-.page-content {line-height: 25px; font-family: 'Open Sans', sans-serif;}
+.page-content {line-height: 25px; font-family: 'Bitter', sans-serif;}
 
-.page-content a {color: rgb(164, 39, 143); font-family: 'Open Sans', sans-serif;}
+.page-content a {color: rgb(102, 178, 255); font-family: 'Open Sans', sans-serif;}
 
 .sidebox {-webkit-box-shadow:rgba(0, 0, 0, 0.298039) 0px 1px 3px;-moz-box-shadow:rgba(0, 0, 0, 0.298039) 0px 1px 3px;box-shadow:rgba(0, 0, 0, 0.298039) 0px 1px 3px;background-color:rgb(250, 250, 250);color:rgb(51, 51, 51);border-width:1px;border-style:solid;border-color:rgb(255, 255, 255);border-radius:3px;padding:18px;margin-top:28px;}
 
@@ -320,9 +324,9 @@ a.btn, a.btn-large, a.btn-small, a.btn-mini {color:#333}
 
 #headerSeparator{margin-top: 7px; border-top-color: rgb(51, 51, 51); border-top-width: 0px; border-top-style: solid;}
 
-h3,.page-content h3 a {font-weight: normal; font-style: normal; font-family: 'Source Sans Pro', sans-serif; font-size: 28px; line-height: 45px;}
+h3,.page-content h3 a {font-weight: normal; font-style: normal; font-family:  'Bitter', serif; font-size: 46px; line-height: 45px;}
 
-h4,.page-content h4 a {font-weight: normal; font-style: normal; font-family: 'Source Sans Pro', sans-serif; font-size: 21px; line-height: 45px;}
+h4,.page-content h4 a {font-weight: normal; font-style: normal; font-family: 'Bitter', serif; font-size: 20px; line-height: 45px;}
 
 h5,.page-content h5 a {font-weight: normal; font-style: normal; font-family: 'Source Sans Pro', sans-serif; font-size: 17px; line-height: 45px;}
 
@@ -370,7 +374,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 #decorative2 {position:fixed;top:0;left:0;right:0;z-index:1032}
 
- body {padding-top:85px}
+ body {padding-top:85px;}
 
 .lead h2 {font-size: 37px; line-height: 57px; font-family: 'Open Sans';}
 
