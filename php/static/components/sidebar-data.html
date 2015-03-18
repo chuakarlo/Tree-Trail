@@ -135,6 +135,9 @@ component.exports = {
   acceptMarker: function(event){
     var component = this;
     event.original.preventDefault();
+
+    if(!this.get('badge.abundance')) return alert('Please edit abundance level first');
+
     Badges.accept({
       id: this.get('badge.id'),
     }).then(function(response){

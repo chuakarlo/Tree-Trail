@@ -73,7 +73,7 @@ class Badges extends TreeTrailController {
     }, $photos));
     if(!$savedPhotos) return $this->response(null, 500);
 
-    if($this->put('approvalRequest')) $this->mailConfirmation($savedBadge);
+    if($this->put('approvalRequest')) $this->mailConfirmation($savedBadge['email'], $savedBadge['approved']);
     $savedBadge['photos'] = $photos;
     $this->response($savedBadge, 201);
   }
@@ -87,6 +87,8 @@ class Badges extends TreeTrailController {
     $validator->rule('min', 'id', 1);
 
     if($validator->validate()){
+      $badge = $this->badges->read($data)[0];
+      $this->mailConfirmation($badge['email'], $badge['approved']);
       $result = $this->badges->delete($data);
       if($result) $this->response(null, 204);
       else $this->response(null, 400);
@@ -106,10 +108,24 @@ class Badges extends TreeTrailController {
     }, $photos));
   }
 
-  private function mailConfirmation($savedBadge = []){
-    $subject = "Your TreeTrail badge has been approved";
-    $message = "Your badge " . $savedBadge['name'] . " has been approved.";
-    mail($savedBadge['email'], $subject, $message);
+  private function mailConfirmation($email = '', $approved = FALSE){
+    $successMessage = [
+      'subject' => "Your TreeTrail badge has been approved",
+      'message' => "Congratulations! Your TreeTrail badge has been approved. Please visit http://app-treetrail.rhcloud.com for details."
+    ];
+
+    $failureMessage = [
+      'subject' => "Your TreeTrail badge has been rejected",
+      'message' => "We're sorry to inform you that your TreeTrail badge has been rejected. Please visit http://app-treetrail.rhcloud.com for details."
+    ];
+
+    $this->load->library('email');
+    $this->email->from('noreply@app-treetrail.rhcloud.com', 'TreeTrail Mailer');
+    $this->email->to($email); 
+    $this->email->subject($approved ? $successMessage['subject'] : $failureMessage['subject']);
+    $this->email->message($approved ? $successMessage['message'] : $failureMessage['message']);  
+    $this->email->send();
+
   }
 
 }

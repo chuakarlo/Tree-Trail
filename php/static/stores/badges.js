@@ -74,6 +74,7 @@ define(function(require) {
       })[0];
 
       badgeToUpdate.approved = 1;
+      badgeToUpdate.approvalRequest = 1;
 
       return $.ajax({
         type: 'put',
