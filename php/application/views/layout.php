@@ -60,6 +60,9 @@
           {{/isMap}}
           <li><a href="<?= base_url('/contact?key=view'); ?>" method="get">Contact</a></li>
           <li><a href="<?= base_url('/announcements?key=view'); ?>" method="get">Announcements</a></li>
+           {{^isLoggedIn}}
+           <li><a href="<?= base_url('/feedback'); ?>">Feedback</a></li>
+           {{/isLoggedIn}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
       		{{#isLoggedIn}}
@@ -82,6 +85,9 @@
         </li>
         <li>
           <a href="#" id="view-pending-badges">View Pending Badges</a>
+        </li>
+        <li>
+          <a href="<?= base_url('/feedback'); ?>">View Feedbacks</a>
         </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>
