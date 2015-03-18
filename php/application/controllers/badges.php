@@ -17,7 +17,7 @@ class Badges extends TreeTrailController {
     $data = $this->post();
 
     $validator = new Valitron\Validator($data);
-    $validator->rule('required', ['name', 'latitude', 'longitude', 'types', 'abundance', 'quantity', 'email']);
+    $validator->rule('required', ['name', 'latitude', 'longitude', 'types', 'quantity', 'email']);
     $validator->rule('numeric', ['latitude', 'longitude', 'quantity']);
     $validator->rule('email', ['email']);
     $validator->rule('min', 'quantity', 0);
@@ -50,7 +50,7 @@ class Badges extends TreeTrailController {
 
     $data = $this->put();
     $validator = new Valitron\Validator($data);
-    $validator->rule('required', ['id', 'name', 'latitude', 'longitude', 'types', 'abundance', 'quantity', 'email']);
+    $validator->rule('required', ['id', 'name', 'latitude', 'longitude', 'types', 'quantity', 'email']);
     $validator->rule('numeric', ['latitude', 'longitude', 'quantity']);
     $validator->rule('in', 'abundance', ['abundant', 'average', 'scarce']);
     $validator->rule('email', 'email');

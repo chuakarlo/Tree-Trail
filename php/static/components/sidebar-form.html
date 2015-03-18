@@ -55,6 +55,7 @@
         {{/}}
       </div>
     </div>
+    {{# isLoggedIn }}
     <div class="row">
       <div class="col-sm-12 form-group">
         <select class="form-control" value="{{input.abundance}}">
@@ -70,6 +71,7 @@
         {{/}}
       </div>
     </div>
+    {{/}}
     <div class="row">
       <div class="col-sm-12 form-group">
         <input type="text" class="form-control" placeholder="Tree population (e.g. 10,000)" value="{{input.quantity}}" />
@@ -142,10 +144,6 @@ var validationRules = {
   types: {
     presence: true,
   },
-  abundance: {
-    presence: true,
-    inclusion: ['abundant', 'average', 'scarce'],
-  },
   quantity: {
     presence: true,
     numericality: {
@@ -159,17 +157,24 @@ var validationRules = {
   },
 };
 
+var additionalRulesForAdmin = {
+  abundance: {
+    presence: true,
+    inclusion: ['abundant', 'average', 'scarce'],
+  },
+}
+
 function createBlankInput() {
   return {
     name: '',
     latitude: '',
     longitude: '',
     types: '',
-    abundance: 'placeholder',
+    abundance: '',
     quantity: '',
     email: '',
     photos: [],
-    municipality: ''
+    municipality: 'Danao'
   };
 }
 
@@ -255,7 +260,9 @@ component.exports = {
     event.original.preventDefault();
     var component = this;
     var badgeData = this.get('input');
-    var errors = validate(badgeData, validationRules);
+    var rules = (!this.get('isLoggedIn')) ? validationRules : $.extend(true, {}, validationRules, additionalRulesForAdmin);
+
+    var errors = validate(badgeData, rules);
     this.set('errors', errors ? errors : null);
 
     if (errors) return;
