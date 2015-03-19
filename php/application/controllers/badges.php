@@ -119,12 +119,21 @@ class Badges extends TreeTrailController {
       'message' => "We're sorry to inform you that your TreeTrail badge has been rejected. Please visit http://app-treetrail.rhcloud.com for details."
     ];
 
-    $this->load->library('email');
-    $this->email->from('noreply@app-treetrail.rhcloud.com', 'TreeTrail Mailer');
-    $this->email->to($email); 
-    $this->email->subject($approved ? $successMessage['subject'] : $failureMessage['subject']);
-    $this->email->message($approved ? $successMessage['message'] : $failureMessage['message']);  
-    $this->email->send();
+    $message = [
+      'from_email' => 'noreply@app-treetrail.rhcloud.com',
+      'from_name'  => 'TreeTrail Mailer',
+      'to' => [['email' => $email']],
+      'subject' => $approved ? $successMessage['subject'] : $failureMessage['subject'],
+      'text' => $approved ? $successMessage['message'] : $failureMessage['message'], 
+    ];
+
+    
+    try{
+      $mailer = new Mandrill(getenv('MANDRILL_API_KEY'));
+      $mailer->messages->send($message);
+    } catch (Mandrill_Error $e){
+
+    }
 
   }
 
