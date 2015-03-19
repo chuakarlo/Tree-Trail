@@ -122,7 +122,7 @@ class Badges extends TreeTrailController {
     $message = [
       'from_email' => 'noreply@app-treetrail.rhcloud.com',
       'from_name'  => 'TreeTrail Mailer',
-      'to' => [['email' => $email']],
+      'to' => [['email' => $email]],
       'subject' => $approved ? $successMessage['subject'] : $failureMessage['subject'],
       'text' => $approved ? $successMessage['message'] : $failureMessage['message'], 
     ];
