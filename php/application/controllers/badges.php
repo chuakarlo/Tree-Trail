@@ -59,7 +59,6 @@ class Badges extends TreeTrailController {
     $validator->rule('min', 'id', 1);
 
     $photos = isset($data['photos']) ? $data['photos'] : [];
-    
     unset($data['photos']);
     unset($data['approvalRequest']);
     $data['approved'] = !!$data['approved'] ? 1 : null;
@@ -68,9 +67,7 @@ class Badges extends TreeTrailController {
     if(!$savedBadge) return $this->response(null, 500);
     
     $savedPhotos = $this->photos->deleteWithLocationId($savedBadge['id']);
-    $savedPhotos = $this->savePhotos($savedBadge['id'], array_map(function($photo){
-      return $photo['image_path'];
-    }, $photos));
+    $savedPhotos = $this->savePhotos($savedBadge['id'], $photos);
     if(!$savedPhotos) return $this->response(null, 500);
 
     if($this->put('approvalRequest')) $this->mailConfirmation($savedBadge['email'], $savedBadge['approved']);
