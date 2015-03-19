@@ -134,7 +134,7 @@
 										
 									</div>
 									<div class="item">
-										<center><img src="<?= base_url('static/images/about/silverS.png'); ?>"  class="img-responsive"></center>
+										<center><img src="<?= base_url('static/images/about/silvers.png'); ?>"  class="img-responsive"></center>
 
 									</div>
 									<div class="item">
