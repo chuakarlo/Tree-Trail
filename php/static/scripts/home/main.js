@@ -13,7 +13,8 @@ require.config({
 require([
   'rvc!components/app',
   'rvc!components/badge-filter',
-],function(TreeApp, BadgeFilter){
+  'stores/badges-filtered'
+],function(TreeApp, BadgeFilter, FilteredBadges){
 
   var FilteredBadges = require('stores/badges-filtered');
 
@@ -40,5 +41,16 @@ require([
   $('#view-pending-badges').on('click', function(){
     FilteredBadges.filter(['unapproved']);
   });
+
+  function filterByHash(hash){
+    var filters = location.hash.slice(1);
+    var filterArray = filters.split(',');
+    var defaultFilter = ['abundant','average','scarce','unapproved'];
+    var filterToUse = !!filters ? filterArray : defaultFilter;
+    FilteredBadges.filter(filterToUse);    
+  }
+
+  $(window).on('hashchange', filterByHash);
+  filterByHash();
 
 });

@@ -84,7 +84,7 @@
           <a href="<?= base_url('/announcements'); ?>">Manage Announcements</a>
         </li>
         <li>
-          <a href="#" id="view-pending-badges">View Pending Badges</a>
+          <a href="/#unapproved" id="view-pending-badges">View Pending Badges</a>
         </li>
         <li>
           <a href="<?= base_url('/feedback'); ?>">View Feedbacks</a>
