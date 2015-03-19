@@ -1,7 +1,7 @@
 {{< layout }}
 
 {{$ extra_styles }}
-  <link rel="stylesheet" href="<?= base_url('static/css/jquery.dataTables.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/datatables/media/css/jquery.dataTables.min.css'); ?>">
  {{/ extra_styles }}
 
 {{$ extra_inline_styles }}
@@ -87,7 +87,7 @@
 {{/ extra_content }}
 
 {{$ extra_libs }}
-  <script src="<?= base_url('static/node_modules/jquery.dataTables.min.js'); ?>"></script>  
+  <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>  
 {{/ extra_libs }}
 
 {{$ extra_scripts }}
