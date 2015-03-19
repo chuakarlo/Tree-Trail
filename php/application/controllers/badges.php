@@ -66,13 +66,19 @@ class Badges extends TreeTrailController {
     $savedBadge = $this->badges->update($data);
     if(!$savedBadge) return $this->response(null, 500);
     
-    $savedPhotos = $this->photos->deleteWithLocationId($savedBadge['id']);
+    $this->photos->deleteWithLocationId($savedBadge['id']);
     $savedPhotos = $this->savePhotos($savedBadge['id'], $photos);
     if(!$savedPhotos) return $this->response(null, 500);
 
     if($this->put('approvalRequest')) $this->mailConfirmation($savedBadge['email'], $savedBadge['approved']);
-    $savedBadge['photos'] = $photos;
-    $this->response($savedBadge, 201);
+    
+    $badges = $this->badges->readWithPhotos();
+    $badgesInRecord = array_values(array_filter($badges, function($badge) use ($savedBadge){
+      return $badge['id'] === $savedBadge['id'];
+    }));
+    $badgeInRecord = count($badgesInRecord) ? $badgesInRecord[0] : [];
+
+    $this->response($badgeInRecord, 201);
   }
 
   public function index_delete(){
