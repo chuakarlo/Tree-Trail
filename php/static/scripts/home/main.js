@@ -34,11 +34,13 @@ require([
     },
   });
 
-  $('#badge-filter').on('click', function(){
+  $('#badge-filter').on('click', function(event){
+    event.preventDefault();
     badgeFilter.open();
   });
 
-  $('#view-pending-badges').on('click', function(){
+  $('#view-pending-badges').on('click', function(event){
+    event.preventDefault();
     FilteredBadges.filter(['unapproved']);
   });
 
