@@ -73,6 +73,10 @@ define(function(require) {
         return badge.id === data.id;
       })[0];
 
+      badgeToUpdate.photos = $.extend(true,{},badgeToUpdate).photos.map(function(photo){
+        return photo.image_path;
+      });
+
       badgeToUpdate.approved = 1;
       badgeToUpdate.approvalRequest = 1;
 
