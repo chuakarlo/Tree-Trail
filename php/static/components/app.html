@@ -16,6 +16,7 @@
   visible="{{isFormSidebarVisible}}"
   isLoggedIn="{{isLoggedIn}}"
   on-close="hideFormSidebar"
+  on-updateLongLat="handleUpdateLongLat"
   on-submitsuccess="handleFormSuccess"
 />
 
@@ -57,7 +58,12 @@ component.exports = {
     this.on('handleBadgeDeleteSuccess', this.handleBadgeDeleteSuccess);
     this.on('handleFormSuccess', this.handleFormSuccess);
     this.on('closeDataPane', this.closeDataPane);
+    this.on('handleUpdateLongLat', this.handleUpdateLongLat);
 
+  },
+  handleUpdateLongLat: function(latitude, longitude) {
+    console.log(latitude + " " + longitude);
+    this.addBadge(latitude, longitude);
   },
   handleMapClick: function(event){
 

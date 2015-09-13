@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control latitude" placeholder="Latitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}" />
+        <input type="text" class="form-control latitude" placeholder="Latitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}" on-keyup="update()">
         {{# errors.latitude.length }}
         <ul class="alert alert-warning">
           {{#errors.latitude}}<li>{{.}}</li>{{/}}
@@ -23,7 +23,7 @@
         {{/}}
       </div>
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control longitude" placeholder="Longitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" />
+        <input type="text" class="form-control longitude" placeholder="Longitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" on-keyup="update()">
         {{# errors.longitude.length }}
         <ul class="alert alert-warning">
           {{#errors.longitude}}<li>{{.}}</li>{{/}}
@@ -243,6 +243,9 @@ component.exports = {
   },
   components: {
     'photo-upload': require('rvc!components/photo-upload'),
+  },
+  update: function() {
+    this.fire('updateLongLat', this.get('input.latitude'), this.get('input.longitude'));
   },
   oninit: function() {
     this.on('addBadge', this.addBadge);
