@@ -10,13 +10,16 @@
   westBounds="123.248"
   on-click="handleMapClick"
   on-markerclick="handleMarkerClick"
+  on-geoclick="handleGeoClick"
 />
 
 <sidebar-form
   visible="{{isFormSidebarVisible}}"
   isLoggedIn="{{isLoggedIn}}"
   on-close="hideFormSidebar"
+  on-updateLongLat="handleUpdateLongLat"
   on-submitsuccess="handleFormSuccess"
+  on-test="handleUpdate"
 />
 
 <sidebar-data 
@@ -57,7 +60,17 @@ component.exports = {
     this.on('handleBadgeDeleteSuccess', this.handleBadgeDeleteSuccess);
     this.on('handleFormSuccess', this.handleFormSuccess);
     this.on('closeDataPane', this.closeDataPane);
-
+    this.on('handleUpdateLongLat', this.handleUpdateLongLat);
+    this.on('handleGeoClick', this.handleGeoClick);
+    this.on('handleUpdate', this.handleUpdate);
+  },
+  handleUpdate: function() {
+    console.log("I am here");
+    this.fire('updateLongLat', this.get('input.latitude'), this.get('input.longitude'));
+  },
+  handleUpdateLongLat: function(latitude, longitude) {
+    console.log(latitude + " " + longitude);
+    this.addBadge(latitude, longitude);
   },
   handleMapClick: function(event){
 
@@ -93,6 +106,9 @@ component.exports = {
     CurrentBadgeStore.selectBadge({
       id: markerId
     });
+  },
+  handleGeoClick: function(){
+    this.showFormSidebar();
   },
   handleBadgeDeleteSuccess: function(){
     this.hideDataSidebar();   

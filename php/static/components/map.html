@@ -1,4 +1,5 @@
-<div class="map"></div>
+<div class="map">
+</div>
 
 <style>
 .map {
@@ -14,9 +15,9 @@
   margin-top: -41px;
 }
 </style>
-
 <script>
 var L = require('leaflet');
+var K = require('easyButton');
 var BadgeStore = require('stores/badges-filtered');
 var ABUNDANCE_TO_COLOR = {
   abundant: 'green',
@@ -51,6 +52,7 @@ component.exports = {
     var longitude = this.get('longitude');
     var zoom = this.get('zoom');
     var iconPath = this.get('assetsDirectory');
+    var helloPopup = L.popup().setContent('Hello World!');
 
     // Create the map
     this.map = L.map(this.find('.map'), {
@@ -66,6 +68,7 @@ component.exports = {
         [this.get('southBounds'), this.get('westBounds')],
       ],
     });
+
 
     component.set('badges', BadgeStore.getState());
     BadgeStore.on('change', function(badgeData) {
@@ -102,6 +105,10 @@ component.exports = {
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18
+    }).addTo(this.map);
+
+    L.easyButton('<span id="geo-tagged-icon" class="fa fa-map-marker fa-2x"></span>', function(btn, map) {
+      component.fire('geoclick');
     }).addTo(this.map);
 
     // Listen to map events

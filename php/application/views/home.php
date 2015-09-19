@@ -2,6 +2,8 @@
 
 {{$ extra_styles }}
   <link rel="stylesheet" href="<?= base_url('static/node_modules/leaflet/dist/leaflet.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/leaflet-easybutton/src/easy-button.css'); ?>">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 {{/ extra_styles }}
 
 {{$ extra_inline_styles }}

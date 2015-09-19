@@ -4,6 +4,7 @@ require.config({
     ractive : 'node_modules/ractive/ractive',
     rvc: 'node_modules/rvc/rvc',
     leaflet: 'node_modules/leaflet/dist/leaflet',
+    easyButton: 'node_modules/leaflet-easybutton/src/easy-button',
     validate: 'node_modules/validate.js/validate',
     eventemitter : 'node_modules/wolfy87-eventemitter/EventEmitter',
   },
