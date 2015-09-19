@@ -54,32 +54,6 @@ component.exports = {
     var iconPath = this.get('assetsDirectory');
     var helloPopup = L.popup().setContent('Hello World!');
 
-    /*var htmlStar = L.map('html-star', {scrollWheelZoom: false}).setView([37.8, -96], 4);
-
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(htmlStar);
-
-    L.easyButton('<span class="star">&starf;</span>', function() {
-      alert('Yehey!');
-    }).addTo(htmlStar);*/
-    /*var additionalBtn = L.Control.extend({
-      options: {
-        position: 'topleft'
-      },
-      onAdd: function(map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-
-        container.style.backgroundColor = 'white';
-        container.style.width = '30px';
-        container.style.height = '30px';
-
-        container.onclick = function() {
-          console.log('buttonClicked');
-        }
-
-        return container;
-      }
-    });*/
-
     // Create the map
     this.map = L.map(this.find('.map'), {
       center: [
@@ -133,8 +107,8 @@ component.exports = {
       maxZoom: 18
     }).addTo(this.map);
 
-    L.easyButton('fa fa-map-marker fa-2x', function(btn, map) {
-      
+    L.easyButton('<span id="geo-tagged-icon" class="fa fa-map-marker fa-2x"></span>', function(btn, map) {
+      component.fire('geoclick');
     }).addTo(this.map);
 
     // Listen to map events
