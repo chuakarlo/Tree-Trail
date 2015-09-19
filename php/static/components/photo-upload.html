@@ -1,33 +1,8 @@
 <div class="uploaded">
   {{# photos }}
   <div class="photo">
-    <img src="{{path}}/{{.}}" id="path">
+    <img src="{{path}}/{{.}}" />
     <button type="button" class="close" on-click="removePhoto">&times;</button>
-    <script>
-      var test = {
-        'path'  : document.getElementById("path").src,
-        'gps'   : 'latitude'
-      }
-      $.ajax({
-        url: "/photos",
-        type: "GET",
-        data: test,
-      }).done(function(data){
-        $(".latitude").val(data);
-      });
-
-      var test = {
-        'path'  : document.getElementById("path").src,
-        'gps'   : 'longitude'
-      }
-      $.ajax({
-        url: "/photos",
-        type: "GET",
-        data: test,
-      }).done(function(data){
-        $(".longitude").val(data);
-      });
-    </script>
   </div>
   {{/}}
 </div>
