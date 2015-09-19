@@ -54,7 +54,7 @@
 		      {{#isLoggedIn}}
 		      <li><a href="<?= base_url('/statistics'); ?>">Statistics</a></li>
 		      {{/isLoggedIn}}
-          <li><a href="<?= base_url('/about'); ?>">About Project Tree Trail</a></li>
+          <li><a href="<?= base_url('/about'); ?>">Tree Trail</a></li>
           {{#isMap}}
           <li><a href="#" id="badge-filter">Filter Badges</a></li>
           {{/isMap}}

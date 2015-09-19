@@ -16,6 +16,7 @@
     "jquery-cycle2": "git://github.com/malsup/cycle2.git",
     "jquery-ui": "^1.10.5",
     "leaflet": "^0.7.3",
+    "leaflet-easybutton": "^1.1.2",
     "moment": "^2.9.0",
     "ractive": "^0.6.1",
     "reflux": "^0.2.5",

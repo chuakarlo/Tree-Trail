@@ -21,6 +21,7 @@ class Init_db extends CI_Controller {
 	}
 
 	public function start_init() {
+		print("hello");
 		$this->db_checker->reset_results();
 
 		$this->db_checker->modify_db();
