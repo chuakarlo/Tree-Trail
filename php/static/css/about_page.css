@@ -308,12 +308,6 @@ a.btn, a.btn-large, a.btn-small, a.btn-mini {color:#333}
 
  .btn-secondary:hover, .btn-secondary:active, .btn-secondary.active, .btn-secondary.disabled, .btn-secondary[disabled] {background-color:#dfdfdf;}
 
-.btn-primary, .btn-primary:hover, a.btn-primary, a.btn-primary:hover {color:#ffffff;}
-
- .btn-primary {border:1px solid #9d2589;border-bottom:1px solid #7b1d6c;background-color:#b02a9a;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#b02a9a), to(#9e268b));background-image:-webkit-linear-gradient(top, #b02a9a, #9e268b);background-image:-moz-linear-gradient(top, #b02a9a, #9e268b);background-image:-ms-linear-gradient(top, #b02a9a, #9e268b);background-image:-o-linear-gradient(top, #b02a9a, #9e268b);background-image:linear-gradient(top, #b02a9a, #9e268b);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#b02a9a, endColorstr=#9e268b, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
-
- .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {background-color:#9d2589;}
-
 #divHeaderText {padding-top: 200px; padding-bottom: 30px; border-color: rgb(51, 51, 51); text-align: left;}
 
 #decorative1 {-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;}
@@ -341,8 +335,6 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 .nav .dropdown-toggle .caret {border-top-color:rgb(0, 0, 0);border-bottom-color:rgb(0, 0, 0);}
 
 .nav .dropdown-toggle:hover .caret {border-top-color:rgb(0, 0, 0);border-bottom-color:rgb(0, 0, 0);}
-
-.navbar .dropdown-menu, .dropdown-menu {background-color: rgb(54, 54, 54); border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;}
 
 .navbar .dropdown-menu li > a, .dropdown-menu li > a, .navbar .nav-pills .open .dropdown-toggle {color: rgb(255, 255, 255);}
 
