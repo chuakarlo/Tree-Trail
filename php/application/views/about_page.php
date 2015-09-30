@@ -3,7 +3,6 @@
 {{$ extra_styles }}
 	<link href="<?= base_url('static/scripts/about/carousel/style.css'); ?>" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('static/css/about_page.css'); ?>" rel="stylesheet" type="text/css" />
-	<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 {{/ extra_styles }}
 
 {{$ extra_inline_styles }}

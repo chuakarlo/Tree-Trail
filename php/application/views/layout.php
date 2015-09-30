@@ -6,6 +6,7 @@
   <title>Tree Trail</title>
 
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
+  <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="icon" href="<?=base_url()?>/favicon.ico" type="image/gif">
 
   {{$ extra_styles }}{{/ extra_styles }}
@@ -20,6 +21,7 @@
       padding-top: 15px;
     }
     body{
+      font-family: "Open Sans" !important;
       padding-top: 50px;
     }
   {{$ extra_inline_styles }}{{/ extra_inline_styles }}
