@@ -188,7 +188,7 @@
 		<p>Initializing would delete the current tables
 		   and contents of your <code><?= $db_name ?></code> database.<br>
 		   Initialize anyway?</p>
-		<p><a class="btn" href="/start_init">Sure! Go ahead.</a></p>
+		<p><a class="btn" href="<?php echo base_url("start_init"); ?>">Sure! Go ahead.</a></p>
 	</div>
 </body>
 </html>
