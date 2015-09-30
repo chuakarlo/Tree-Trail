@@ -183,7 +183,7 @@
                                 <div>
                                     <center>
                                         <p style="font-size:20px"><font color ="#060">Inspired? Great!</font></p>
-                                        <p style="font-size:20px"><font color ="gray">You can email us at<a href="uscprojecttreetrail@gmail.com"> uscprojecttreetrail@gmail.com.</a></font></p>
+                                        <p style="font-size:20px"><font color ="gray">You can email us at <a href="javascript: void(0);" style="cursor: text;">uscproject500@gmail.com</a></font></p>
                                         <p style="font-size:20px"><center><font color = "gray">Copyright © 2015 Project Tree Trail. All Rights Reserved.</p></font>
                                     </center>
                                 </div>
