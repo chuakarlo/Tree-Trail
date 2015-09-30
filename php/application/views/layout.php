@@ -6,7 +6,6 @@
   <title>Tree Trail</title>
 
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
   <link rel="icon" href="<?=base_url()?>/favicon.ico" type="image/gif">
 
   {{$ extra_styles }}{{/ extra_styles }}
