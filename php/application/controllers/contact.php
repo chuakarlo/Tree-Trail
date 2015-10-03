@@ -57,12 +57,14 @@ class Contact extends TreeTrailController {
       $this->contacts->create($con);
       $this->renderPageWithData([
         'message' => 'Account has been successfully created.',
-        'contacts'=>$this->contacts->read()
+        'contacts'=>$this->contacts->read(),
+        'name'    =>$this->login->getName($this->session->userdata("user_id")),
       ]);
     } else{
       $this->renderPageWithData([
         'error' => 'Account not successfully updated (each field requires a minimum of 7 characters, a valid number and email).',
-        'contacts'=>$this->contacts->read()
+        'contacts'=>$this->contacts->read(),
+        'name'    =>$this->login->getName($this->session->userdata("user_id")),
       ]);
     }
   }
@@ -88,12 +90,14 @@ class Contact extends TreeTrailController {
      $this->contacts->update($con);
      $this->renderPageWithData([
         'message' => 'Account has been successfully updated.',
-        'contacts'=>$this->contacts->read()
+        'contacts'=>$this->contacts->read(),
+        'name'    =>$this->login->getName($this->session->userdata("user_id")),
       ]);
     }else{
       $this->renderPageWithData([
         'error' => 'Account not successfully updated (each field requires a minimum of 7 characters, a valid number and email).',
-        'contacts'=>$this->contacts->read()
+        'contacts'=>$this->contacts->read(),
+        'name'    =>$this->login->getName($this->session->userdata("user_id")),
       ]);
     }
   }
@@ -101,7 +105,8 @@ class Contact extends TreeTrailController {
   	$this->contacts->delete(['id'=>$this->post('id')]);
     $this->renderPageWithData([
         'message' => 'Account successfully deleted.',
-        'contacts'=>$this->contacts->read()
+        'contacts'=>$this->contacts->read(),
+        'name'    =>$this->login->getName($this->session->userdata("user_id")),
       ]);
   	}
  }
