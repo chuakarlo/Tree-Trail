@@ -60,7 +60,7 @@ Tree-Trail
     composer install
     ```
 
-9. Start Apache and visit `http://localhost/init_db`. This page should contain instructions on setting up your db.
+9. Start Apache and visit `http://localhost/init_db`. This page should contain instructions on setting up your db. If you receive a `A Database Error Occured. Unable to select the specified database: OPENSHIFT_MYSQL_DB_NAME`, create a blank database with the same name as `OPENSHIFT_MYSQL_DB_NAME`
 
 ## Contributing code
 

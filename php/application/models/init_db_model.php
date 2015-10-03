@@ -10,8 +10,11 @@ class Init_db_model extends CI_Model {
 
 		$this->db_name = getenv("OPENSHIFT_MYSQL_DB_NAME");
 		$this->db_tables = array(
-			"comments", "locations",
-			"photos", "users"
+			"announcements", "comments", "contacts", "feedback",
+			"locations", "photos", "users", "user_info"
+		);
+		$this->db_tables_constraints = array(
+			"user_info"
 		);
 		$this->db_results = array();
 	}
@@ -106,38 +109,83 @@ class Init_db_model extends CI_Model {
 	function create_tables() {
 		$query = "CREATE TABLE IF NOT EXISTS `?` (...)";
 		$table_query = array(
-			"comments"	=> "CREATE TABLE IF NOT EXISTS `comments` (
-							`id` int(11) NOT NULL AUTO_INCREMENT,
-							`comment` text NOT NULL,
-							`parent_id` int(11) NOT NULL,
-							`owner_id` int(11) NOT NULL,
-							`date` datetime NOT NULL,
-							PRIMARY KEY (`id`)
-							) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
-			"locations"	=> "CREATE TABLE IF NOT EXISTS `locations` (
-							`id` int(11) NOT NULL AUTO_INCREMENT,
-							`name` varchar(1024) NOT NULL,
-							`latitude` float NOT NULL,
-							`longitude` float NOT NULL,
-							`added_by` datetime NOT NULL,
-							`added_on` datetime NOT NULL,
-							PRIMARY KEY (`id`)
-							) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
-			"photos"	=> "CREATE TABLE IF NOT EXISTS `photos` (
-							`id` int(11) NOT NULL AUTO_INCREMENT,
-							`image_path` text NOT NULL,
-							`caption` text NOT NULL,
-							`uploader_ip` int(11) NOT NULL,
-							`location_id` int(11) NOT NULL,
-							PRIMARY KEY (`id`)
-							) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
-			"users"		=> "CREATE TABLE IF NOT EXISTS `users` (
-							`id` int(11) NOT NULL AUTO_INCREMENT,
-							`username` varchar(32) NOT NULL,
-							`password` varchar(32) NOT NULL,
-							`type` int(11) NOT NULL DEFAULT '0',
-							PRIMARY KEY (`id`)
-							) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;"
+			"announcements" => "CREATE TABLE IF NOT EXISTS `announcements` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`title` varchar(45) NOT NULL,
+								`date` date NOT NULL,
+								`body` text NOT NULL,
+								`user` varchar(45) NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"comments"		=> "CREATE TABLE IF NOT EXISTS `comments` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`comment` text NOT NULL,
+								`parent_id` int(11) NOT NULL,
+								`owner_id` int(11) NOT NULL,
+								`date` datetime NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"contacts"		=> "CREATE TABLE IF NOT EXISTS `contacts` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`contact_person` varchar(255) NOT NULL,
+								`contact_number` varchar(255) NOT NULL,
+								`organization` varchar(255) NOT NULL,
+								`email` varchar(255) NOT NULL,
+								`image_path` text NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"feedback"		=> "CREATE TABLE IF NOT EXISTS `feedback` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`name` varchar(45) NOT NULL,
+								`email` varchar(70) NOT NULL,
+								`title` varchar(255) NOT NULL,
+								`body` text NOT NULL,
+								`date_added` date NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"locations"		=> "CREATE TABLE IF NOT EXISTS `locations` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`name` varchar(1024) NOT NULL,
+								`latitude` double NOT NULL,
+								`longitude` double NOT NULL,
+								`types` text NOT NULL,
+								`abundance` text NOT NULL,
+								`quantity` float NOT NULL,
+								`email` text NOT NULL,
+								`added_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+								`approved` tinyint(4) DEFAULT NULL,
+								`municipality` text NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"photos"		=> "CREATE TABLE IF NOT EXISTS `photos` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`image_path` text NOT NULL,
+								`caption` text NOT NULL,
+								`uploader_ip` int(11) NOT NULL,
+								`location_id` int(11) NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"users"			=> "CREATE TABLE IF NOT EXISTS `users` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`username` varchar(45) NOT NULL,
+								`password` varchar(45) NOT NULL,
+								`date` date NOT NULL,
+								`type` varchar(45) NOT NULL,
+								`password_updated_on` date NOT NULL,
+								PRIMARY KEY (`id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;",
+			"user_info"		=> "CREATE TABLE IF NOT EXISTS `user_info` (
+								`id` int(11) NOT NULL AUTO_INCREMENT,
+								`first_name` varchar(45) NOT NULL,
+								`last_name` varchar(45) NOT NULL,
+								`middle_name` varchar(45) NOT NULL,
+								`address` varchar(45) NOT NULL,
+								`contact_number` varchar(45) DEFAULT NULL,
+								`gender` varchar(45) NOT NULL,
+								`user_id` int(11) NOT NULL,
+								PRIMARY KEY (`id`),
+								KEY `info_fk_id` (`user_id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;"
 		);
 		$final_result = true;
 
@@ -150,6 +198,29 @@ class Init_db_model extends CI_Model {
 			endif;
 		endforeach;
 		$this->db_results["create_tables"]["final_result"] = ($final_result)?"ok":"notok";
+	}
+
+	function create_constraints() {
+		$query = "ALTER TABLE `?` ADD CONSTRAINT ...";
+		$table_constraints = array(
+			"user_info"	=> "ALTER TABLE `user_info`
+							ADD CONSTRAINT `info_fk_id`
+							FOREIGN KEY (`user_id`)
+							REFERENCES `users` (`id`)
+							ON DELETE NO ACTION
+							ON UPDATE NO ACTION;"
+		);
+		$final_result = true;
+
+		$this->db_results["create_constraints"]["query"] = $query;
+		foreach($this->db_tables_constraints as $table):
+			$result = $this->db->query($table_constraints[$table]);
+			$this->db_results["create_constraints"]["result"][$table] = ($result)?"ok":"notok";
+			if(!$result):
+				$final_result = false;
+			endif;
+		endforeach;
+		$this->db_results["create_constraints"]["final_result"] = ($final_result)?"ok":"notok";
 	}
 
 }

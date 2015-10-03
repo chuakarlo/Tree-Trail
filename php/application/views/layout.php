@@ -6,7 +6,7 @@
   <title>Tree Trail</title>
 
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
+  <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="icon" href="<?=base_url()?>/favicon.ico" type="image/gif">
 
   {{$ extra_styles }}{{/ extra_styles }}
@@ -21,6 +21,7 @@
       padding-top: 15px;
     }
     body{
+      font-family: "Open Sans" !important;
       padding-top: 50px;
     }
   {{$ extra_inline_styles }}{{/ extra_inline_styles }}
@@ -54,15 +55,15 @@
 		      {{#isLoggedIn}}
 		      <li><a href="<?= base_url('/statistics'); ?>">Statistics</a></li>
 		      {{/isLoggedIn}}
-          <li><a href="<?= base_url('/about'); ?>">Tree Trail</a></li>
+          <li><a href="<?= base_url('/about'); ?>">About</a></li>
+          <li><a href="<?= base_url('/contact?key=view'); ?>" method="get">Contact</a></li>
+          <li><a href="<?= base_url('/announcements?key=view'); ?>" method="get">Announcements</a></li>
+          {{^isLoggedIn}}
+          <li><a href="<?= base_url('/feedback'); ?>">Feedback</a></li>
+          {{/isLoggedIn}}
           {{#isMap}}
           <li><a href="#" id="badge-filter">Filter Badges</a></li>
           {{/isMap}}
-          <li><a href="<?= base_url('/contact?key=view'); ?>" method="get">Contact</a></li>
-          <li><a href="<?= base_url('/announcements?key=view'); ?>" method="get">Announcements</a></li>
-           {{^isLoggedIn}}
-           <li><a href="<?= base_url('/feedback'); ?>">Feedback</a></li>
-           {{/isLoggedIn}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
       		{{#isLoggedIn}}
@@ -87,7 +88,7 @@
           <a href="/#unapproved" id="view-pending-badges">View Pending Badges</a>
         </li>
         <li>
-          <a href="<?= base_url('/feedback'); ?>">View Feedbacks</a>
+          <a href="<?= base_url('/feedback'); ?>">Manage Feedbacks</a>
         </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>
