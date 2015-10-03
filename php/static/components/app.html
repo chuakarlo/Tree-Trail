@@ -65,7 +65,6 @@ component.exports = {
     this.on('handleUpdate', this.handleUpdate);
   },
   handleUpdate: function() {
-    console.log("I am here");
     this.fire('updateLongLat', this.get('input.latitude'), this.get('input.longitude'));
   },
   handleUpdateLongLat: function(latitude, longitude) {
