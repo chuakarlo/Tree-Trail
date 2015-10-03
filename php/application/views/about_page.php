@@ -3,7 +3,6 @@
 {{$ extra_styles }}
 	<link href="<?= base_url('static/scripts/about/carousel/style.css'); ?>" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('static/css/about_page.css'); ?>" rel="stylesheet" type="text/css" />
-	<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 {{/ extra_styles }}
 
 {{$ extra_inline_styles }}
@@ -184,7 +183,7 @@
                                 <div>
                                     <center>
                                         <p style="font-size:20px"><font color ="#060">Inspired? Great!</font></p>
-                                        <p style="font-size:20px"><font color ="gray">You can email us at<a href="uscprojecttreetrail@gmail.com"> uscprojecttreetrail@gmail.com.</a></font></p>
+                                        <p style="font-size:20px"><font color ="gray">You can email us at <a href="javascript: void(0);" style="cursor: text;">uscproject500@gmail.com</a></font></p>
                                         <p style="font-size:20px"><center><font color = "gray">Copyright © 2015 Project Tree Trail. All Rights Reserved.</p></font>
                                     </center>
                                 </div>

@@ -6,8 +6,8 @@
   <title>Tree Trail</title>
 
   <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" href="<?= base_url('static/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('static/node_modules/datatables/media/css/jquery.dataTables.min.css'); ?>">
+  <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
   <link rel="icon" href="<?=base_url()?>/favicon.ico" type="image/gif">
   
@@ -20,6 +20,7 @@
       padding-top: 15px;
     }
     body{
+      font-family: "Open Sans";
       padding-top: 50px;
     }
   {{$ extra_inline_styles }}{{/ extra_inline_styles }}
@@ -43,8 +44,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 		      <li><a href="<?= base_url('/statistics'); ?>">Statistics</a></li>
-          <li><a href="<?= base_url('/about'); ?>">About Project Tree Trail</a></li>
+          <li><a href="<?= base_url('/about'); ?>">About</a></li>
           <li><a href="<?= base_url('/contact'); ?>">Contact</a></li>
+          <li><a href="<?= base_url('/announcements?key=view'); ?>">Announcements</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
 		  <li class="dropdown">
@@ -61,9 +63,13 @@
 			  </li>
         <li>
           <a href="<?= base_url('/contact'); ?>">Manage Contacts</a>
+          <a href="<?= base_url('/announcements'); ?>">Manage Announcements</a>
         </li>
         <li>
-          <a href="<?= base_url('/'); ?>">View Pending Badges</a>
+          <a href="<?= base_url('/#unapproved'); ?>">View Pending Badges</a>
+        </li>
+        <li>
+          <a href="<?= base_url('/feedback'); ?>">Manage Feedbacks</a>
         </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>

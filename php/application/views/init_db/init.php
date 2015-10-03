@@ -163,6 +163,18 @@
 				endforeach;
 			?>
 			</li></ul>
+			<p>
+				create_constraints<br>
+				<code><?= $create_constraints["query"] ?></code>
+			</p>
+			<ul class="tabbed"><li>Tables:<br>
+			<?php
+				$tables = array_keys($create_constraints["result"]);
+				foreach($tables as $table):
+					echo "<code>".$table."</code><br>";
+				endforeach;
+			?>
+			</li></ul>
 		</div>
 		<div class="inner-container right">
 			<p>Results</p>
@@ -196,8 +208,21 @@
 					endforeach;
 				?>
 			</li></ul>
+			<p>
+				&nbsp;<br>
+				<span class="<?= $create_constraints["final_result"] ?>"></span>
+			</p>
+			<ul class="ul-align">
+				<li>&nbsp;<br>
+				<?php
+					$tables = array_keys($create_constraints["result"]);
+					foreach($tables as $table):
+						echo "<span class='".$create_constraints["result"][$table]."'></span><br>";
+					endforeach;
+				?>
+			</li></ul>
 		</div>
 	</div>
-	<p><a class="btn" href="init_db">Re-check Database</a></p>
+	<p><a class="btn" href="<?php echo base_url("init_db"); ?>">Re-check Database</a></p>
 </body>
 </html>
