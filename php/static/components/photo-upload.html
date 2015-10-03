@@ -34,7 +34,7 @@
 
 {{^uploading}}<button type="button" class="btn btn-default" on-click="openFileDialog">Upload photos</button>{{/}}
 {{#uploading}}<button type="button" class="btn btn-default">Uploading. Please wait.</button>{{/}}
-<input type="file" on-change="uploadSelectedFile" accept=".png,.jpg,.gif" />
+<input type="file" on-change="uploadSelectedFile" accept=".png,.jpg,.gif" multiple />
 
 <style type="text/css">
 input[type=file] {
@@ -89,25 +89,43 @@ component.exports = {
     var component = this;
     var fileInput = this.find('input[type=file]');
     var formData = new FormData();
-    var file = fileInput.files[0];
 
-    if (!file) return;
+    for(var i=0; i<fileInput.files.length; i++) {
+      var file = fileInput.files[i];
+      if(!file) continue;
+      formData.append('file', file);
+      component.set('uploading', true);
+      $.ajax({
+        url: "/photos",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+      }).success(function(filename){
+        component.push('photos', filename);
+      }).always(function(){
+        $(fileInput).wrap('<form>').parent('form').trigger('reset').find('input').unwrap();
+        component.set('uploading', false);
+      });
+    }
 
-    formData.append('file', file);
+    // if (!file) return;
 
-    component.set('uploading', true);
-    $.ajax({
-      url: "/photos",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-    }).success(function(filename){
-      component.push('photos', filename);
-    }).always(function(){
-      $(fileInput).wrap('<form>').parent('form').trigger('reset').find('input').unwrap();
-      component.set('uploading', false);
-    });
+    // formData.append('file', file);
+
+    // component.set('uploading', true);
+    // $.ajax({
+    //   url: "/photos",
+    //   type: "POST",
+    //   data: formData,
+    //   processData: false,
+    //   contentType: false,
+    // }).success(function(filename){
+    //   component.push('photos', filename);
+    // }).always(function(){
+    //   $(fileInput).wrap('<form>').parent('form').trigger('reset').find('input').unwrap();
+    //   component.set('uploading', false);
+    // });
   },
 };
 </script>
