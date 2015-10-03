@@ -6,15 +6,24 @@
 {{/ extra_styles }}
 
 {{$ extra_inline_styles }}
+
 html, body, .content {
   position:relative;
   width : 100%;
   height: 100%;
-  overflow-x:hidden;
 }
+
 body{
   padding-top: 50px;
 }
+
+.truncate {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 {{/ extra_inline_styles }}
 
 {{$ extra_content }} 
@@ -37,8 +46,7 @@ body{
 					</span>
 				</div>
 			</div>
-			<div class="col-md-3"></div>
-							
+			<div class="col-md-3"></div>							
 		</div>
 		<br>
 		<div class="row">
@@ -75,8 +83,7 @@ body{
 			<div class="col-md-3"></div>							
 		</div>
 		<br>
-		<div class="text-center">
-			
+		<div class="text-center">			
 			<canvas id="canvas" height="450" width="600"></canvas>
 		</div>
 
