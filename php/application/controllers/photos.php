@@ -9,7 +9,8 @@ class Photos extends TreeTrailController{
       'file_name' => $this->generateUuid(),
       'upload_path' => realpath(APPPATH . '../static/uploaded_photos/'),
       'allowed_types' => 'gif|jpg|png',
-      'max_size' => '2048',
+      //This should reflect php.ini's upload_max_filesize and post_max_size
+      'max_size' => '10240',
     ]);
 
     if ($this->upload->do_upload('file'))    {
