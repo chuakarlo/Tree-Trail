@@ -7,31 +7,54 @@
 
 {{$ extra_content }}
   <div class="container" id="page-wrapper">
-	<h2>Feedbacks from guests</h2>
-	<br />
-	<table id="feedbackTable" class="table table-hover">
-	{{#feedback}}
-	<tr>
-		<td width="20%">
-			<strong>{{name}}</strong>
-		</td>
-		<td>
-			{{body}}<br /><br />Posted on: {{date_added}}
-		</td>
-	</tr>
-	{{/feedback}}
-	</table>
-	<hr />
+	<div class="contact"> <h1>Feedbacks</h1></div>
+	<div class="col-lg-12">
+		{{#message}}
+	      <div class="col-lg-2"></div>
+	      <div class="alert alert-success alert col-lg-8"><center>{{message}}</center></div>
+	      <div class="col-lg-2"></div>
+	    {{/message}}
+	</div>
+	<br>
+	<div class="col-lg-12"></div>
+	<div class="col-lg-12">
+	<div class="table-responsive">
+		<table id="feedbackTable" class="table table-hover">
+		<tr>
+	      <th width="20%">Name</th>
+	      <th>Email Address</th>
+	      <th>Message</th>
+	      <th></th>
+	    <tr>
+		{{#feedback}}
+		<tr>
+			<td width="20%">
+				<strong>{{name}}</strong>
+				<br />Posted on: {{date_added}}
+			</td>
+			<td>
+				{{email}}
+			</td>	
+			<td>
+				{{body}}
+			</td>
+			<td>
+			<form action="/feedback" method="post">
+			    <input type="hidden" name="action" value="delete" />
+			    <input type="hidden" name="id" value="{{id}}" />
+			    <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this feedback?')">Delete</button>
+			</form>
+			</td>
+		</tr>
+		{{/feedback}}	
+		</table>
+	</div>
+	</div>
   </div>
 {{/ extra_content}}
 
 {{$ extra_scripts}}
   <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
-  <script type="text/javascript">
-	$(document).ready(function() {
-		$('#feedbackTable').dataTable();
-	});
-  </script>
 {{/ extra_scripts}}
 
 {{/ layout}}
