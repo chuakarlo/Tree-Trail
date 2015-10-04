@@ -62,7 +62,7 @@
     <form action="/announcements" method="post">
         <input type="hidden" name="action" value="delete" />
         <input type="hidden" name="id" value="{{id}}" />
-        <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this account?')">Delete</button>
+        <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this announcement?')">Delete</button>
     </form>
     </td>
     </tr>

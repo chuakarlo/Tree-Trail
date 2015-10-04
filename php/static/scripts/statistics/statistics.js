@@ -45,7 +45,7 @@ function init() {
 				var div = document.createElement("div");
 					div.className = 'checklist';
 				var label = document.createElement("label");
-					label.className = "checkbox-inline";
+					label.className = "checkbox-inline truncate";
 				
 				var input = document.createElement("input");
 					input.className = tree_types[x];
