@@ -13,8 +13,10 @@
         type: "GET",
         data: test,
       }).done(function(data){
-        $(".latitude").val(data);
-        console.log(data);
+        if(data!='No GPS data'){
+          $(".latitude").val(data);
+          console.log(data);
+        }
       });
 
       var test = {
@@ -26,8 +28,10 @@
         type: "GET",
         data: test,
       }).done(function(data){
-        $(".longitude").val(data);
-        console.log(data);
+        if(data!='No GPS data'){
+          $(".longitude").val(data);
+          console.log(data);
+        }
       });
     </script>
   </div>
