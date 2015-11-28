@@ -9,7 +9,7 @@
     <h2>Account Settings</h2>	
     <table class="table table-hover">
       <tr>
-        <td width="30%"><strong>Name</strong></td>
+        <td width="30%"><strong>Personal Information</strong></td>
         <td id="settings-name" width="40%">
 		  <span class="text-muted">
 		    {{form_first_name}} {{form_middle_name}} {{form_last_name}}

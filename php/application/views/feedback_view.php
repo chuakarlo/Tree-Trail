@@ -20,41 +20,51 @@
 	<div class="col-lg-12">
 	<div class="table-responsive">
 		<table id="feedbackTable" class="table table-hover">
-		<tr>
-	      <th width="20%">Name</th>
-	      <th>Email Address</th>
-	      <th>Message</th>
-	      <th></th>
-	    <tr>
-		{{#feedback}}
-		<tr>
-			<td width="20%">
-				<strong>{{name}}</strong>
-				<br />Posted on: {{date_added}}
-			</td>
-			<td>
-				{{email}}
-			</td>	
-			<td>
-				{{body}}
-			</td>
-			<td>
-			<form action="/feedback" method="post">
-			    <input type="hidden" name="action" value="delete" />
-			    <input type="hidden" name="id" value="{{id}}" />
-			    <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this feedback?')">Delete</button>
-			</form>
-			</td>
-		</tr>
-		{{/feedback}}	
+			<thead>
+				<tr>
+			      <th width="20%">Name</th>
+			      <th>Email Address</th>
+			      <th>Message</th>
+			      {{#isSuperAdmin}}<th></th>{{/isSuperAdmin}}
+			    </tr>
+			</thead>
+			{{#feedback}}
+			<tr>
+				<td width="20%">
+					<strong>{{name}}</strong>
+					<br />Posted on: {{date_added}}
+				</td>
+				<td>
+					{{email}}
+				</td>	
+				<td>
+					{{body}}
+				</td>
+				{{#isSuperAdmin}}
+				<td>
+				<form action="/feedback" method="post">
+				    <input type="hidden" name="action" value="delete" />
+				    <input type="hidden" name="id" value="{{id}}" />
+				    <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this feedback?')">Delete</button>
+				</form>
+				</td>
+				{{/isSuperAdmin}}
+			</tr>
+			{{/feedback}}
 		</table>
 	</div>
 	</div>
   </div>
 {{/ extra_content}}
 
-{{$ extra_scripts}}
+{{$ extra_libs}}
   <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
-{{/ extra_scripts}}
+{{/ extra_libs}}
+
+{{$ extra_scripts }}
+  <script>
+    $('#feedbackTable').DataTable();
+  </script>
+{{/ extra_scripts }}
 
 {{/ layout}}

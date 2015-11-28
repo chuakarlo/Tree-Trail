@@ -52,14 +52,8 @@ class Feedback extends TreeTrailController {
 			]);
 		else:
 			$this->feedback_m->add();
-			$data = [
-				'message' => 'Feedback successfully added.',
-				'name' => $this->login->getName($this->session->userdata("user_id")),
-				'success' => 'success'
-			];
-			$this->render('feedback', $data, [
-				'layout' => 'layout'
-			]);
+			$this->session->set_flashdata('message', 'Feedback successfully added.');
+			redirect('feedback');
 		endif;
   	}
     

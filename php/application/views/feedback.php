@@ -9,9 +9,9 @@
 	<h2>Feedback</h2>
 	<p>Use the form below to send us your comments. We read all feedback carefully, but please note that we cannot respond to the comments you submit.</p>
 	<div class="col-lg-2"></div>
-	{{#message}}
-		<div class="alert alert-success alert col-lg-8"><center>{{message}}</center></div>
-	{{/message}}
+		<?php if($this->session->flashdata('message')): ?>
+		<div class="alert alert-success alert col-lg-8"><center><?php echo $this->session->flashdata('message'); ?></center></div>
+		<?php endif; ?>
 	<div class="col-lg-2"></div>
 	<div class="col-lg-2"></div>
 	<form action="<?= base_url('feedback') ?>" method="post">
