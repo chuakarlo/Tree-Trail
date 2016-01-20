@@ -89,6 +89,7 @@ component.exports = {
   showFormSidebar: function(){
     this.set('isFormSidebarVisible', true);
     this.hideDataSidebar();
+    this.findComponent('sidebar-form').clearForm();
   },
   hideFormSidebar: function(){
     this.set('isFormSidebarVisible', false);
@@ -121,7 +122,6 @@ component.exports = {
   editMarker: function(){
     this.hideDataSidebar();
     this.showFormSidebar();
-
     var currentBadge = $.extend(true,{}, CurrentBadgeStore.getState());
     currentBadge.photos = currentBadge.photos.map(function(photo){
       return photo.image_path;

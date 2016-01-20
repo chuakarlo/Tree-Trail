@@ -29,22 +29,26 @@ class Photos extends TreeTrailController{
     $gps = $this->input->get('gps');
     $exif = @exif_read_data($path, 0, true);
 
-    if($gps=='latitude'){ 
-      
-      $degrees = $exif["GPS"]["GPSLatitude"][0] / 1;
-      $minutes = $exif["GPS"]["GPSLatitude"][1] / 60;
-      $sec = explode('/',$exif["GPS"]["GPSLatitude"][2]);
-      $seconds = ($sec[0] / $sec[1]) / 3600;
-      echo $degrees + $minutes + $seconds;
-      
-    } else if ($gps=='longitude') {
-      
-      $degrees = $exif["GPS"]["GPSLongitude"][0] / 1;
-      $minutes = $exif["GPS"]["GPSLongitude"][1] / 60;
-      $sec = explode('/',$exif["GPS"]["GPSLongitude"][2]);
-      $seconds = ($sec[0] / $sec[1]) / 3600;
-      echo $degrees + $minutes + $seconds;
+    if(isset($exif['GPS'])){
+      if($gps=='latitude'){ 
+        
+        $degrees = $exif["GPS"]["GPSLatitude"][0] / 1;
+        $minutes = $exif["GPS"]["GPSLatitude"][1] / 60;
+        $sec = explode('/',$exif["GPS"]["GPSLatitude"][2]);
+        $seconds = ($sec[0] / $sec[1]) / 3600;
+        echo $degrees + $minutes + $seconds;
+        
+      } else if ($gps=='longitude') {
+        
+        $degrees = $exif["GPS"]["GPSLongitude"][0] / 1;
+        $minutes = $exif["GPS"]["GPSLongitude"][1] / 60;
+        $sec = explode('/',$exif["GPS"]["GPSLongitude"][2]);
+        $seconds = ($sec[0] / $sec[1]) / 3600;
+        echo $degrees + $minutes + $seconds;
 
+      }
+    } else {
+      echo 'No GPS data';
     }
   }
 
