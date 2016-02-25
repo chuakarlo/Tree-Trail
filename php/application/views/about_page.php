@@ -80,7 +80,7 @@
 
                                 <hr style="margin:45px 0 0px" />
                                 
-                                <ul><img src="<?= base_url('static/images/about/7.jpg'); ?>"></ul>    
+                                <ul><img src="<?= base_url('static/images/about/PENRO.png'); ?>"></ul>    
                                 <h3><font color = "green">Provincial Environment and Natural Resources Office (PENRO)</font></h3></font>
                                 
                                 <hr style="margin:25px 0 0px" />
