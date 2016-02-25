@@ -2,6 +2,7 @@
 
 {{$ extra_styles}}
   <link rel="stylesheet" href="<?= base_url('static/css/manage_users.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('static/node_modules/datatables/media/css/jquery.dataTables.min.css'); ?>">
 {{/ extra_styles}}
 
 {{$ extra_inline_styles }}
@@ -33,18 +34,21 @@
         <button class='btn btn-primary' data-toggle="modal" data-target="#myModal">Add Announcement</button>
     </div>
     <div class="col-lg-12">
+      <br>
     </div>
     <div class="col-lg-12">
  <div class="table-responsive">
-  <table class ="table table-hover">
+  <table id="announcementManage" class ="table table-hover">
+     <thead>
      <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Announcement Content</th>
-        <th>Posted by</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Announcement Content</th>
+          <th>Posted by</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+    </thead>
   {{#announcements }}
     <tr>
       <td>{{title}}</td>
@@ -62,7 +66,7 @@
     <form action="/announcements" method="post">
         <input type="hidden" name="action" value="delete" />
         <input type="hidden" name="id" value="{{id}}" />
-        <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this account?')">Delete</button>
+        <button type="submit" class='btn btn-danger btn-xs' onClick = "return confirm('Are you sure you want to delete this announcement?')">Delete</button>
     </form>
     </td>
     </tr>
@@ -104,3 +108,13 @@
 {{/ extra_content }}
 
 {{/ layout }}
+
+{{$ extra_libs}}
+  <script src="<?= base_url('static/node_modules/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
+{{/ extra_libs}}
+
+{{$ extra_scripts }}
+  <script>
+    $('#announcementManage').DataTable();
+  </script>
+{{/ extra_scripts }}

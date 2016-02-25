@@ -7,7 +7,7 @@
       <div class="col-sm-12 form-group">
         <input type="text" class="form-control" placeholder="Name of Place" value="{{input.name}}" />
         {{# errors.name.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.name}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -15,17 +15,17 @@
     </div>
     <div class="row">
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control latitude" placeholder="Latitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}">
+        <input type="text" class="form-control latitude" placeholder="Latitude" readonly title="Tip: Click on the map to automatically get coordinates" value="{{input.latitude}}">
         {{# errors.latitude.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.latitude}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
       </div>
       <div class="col-sm-6 form-group">
-        <input type="text" class="form-control longitude" placeholder="Longitude" title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" on-change="update()">
+        <input type="text" class="form-control longitude" placeholder="Longitude" readonly title="Tip: Click on the map to automatically get coordinates" value="{{input.longitude}}" on-change="update()">
         {{# errors.longitude.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.longitude}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -49,7 +49,7 @@
       <div class="col-sm-12 form-group">
         <input type="text" class="form-control" placeholder="Types of trees in the area (e.g. Narra, Mahogany, Mangrove)" value="{{input.types}}" />
         {{# errors.types.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.types}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -65,7 +65,7 @@
           <option value="scarce">Scarce</option>
         </select>
         {{# errors.abundance.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.abundance}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -76,7 +76,7 @@
       <div class="col-sm-12 form-group">
         <input type="text" class="form-control" placeholder="Tree population (e.g. 10,000)" value="{{input.quantity}}" />
         {{# errors.quantity.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.quantity}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -86,7 +86,7 @@
       <div class="col-sm-12 form-group">
         <input type="text" class="form-control" placeholder="Email address" value="{{input.email}}" />
         {{# errors.email.length }}
-        <ul class="alert alert-warning">
+        <ul class="alert alert-danger">
           {{#errors.email}}<li>{{.}}</li>{{/}}
         </ul>
         {{/}}
@@ -288,6 +288,7 @@ component.exports = {
   },
   clearForm: function() {
     this.set('input', createBlankInput());
+    this.set('errors', null);
   }
 };
 </script>

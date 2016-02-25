@@ -88,7 +88,12 @@
           <a href="/#unapproved" id="view-pending-badges">View Pending Badges</a>
         </li>
         <li>
+          {{#isSuperAdmin}}
           <a href="<?= base_url('/feedback'); ?>">Manage Feedbacks</a>
+          {{/isSuperAdmin}}
+          {{^isSuperAdmin}}
+          <a href="<?= base_url('/feedback'); ?>">View Feedbacks</a>
+          {{/isSuperAdmin}}
         </li>
       		  <li><a href="<?= base_url('/logout'); ?>">Logout</a></li>
 			</ul>
